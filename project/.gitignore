@@ -39,3 +39,5 @@ __pycache__/
 # Outros
 .env
 .env.local
+
+out/
