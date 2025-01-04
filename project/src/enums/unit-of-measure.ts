@@ -3,4 +3,4 @@ enum UnitOfMeasure {
     Milliliters,
     Kilos,
     Kilograms,
-  }
+}
