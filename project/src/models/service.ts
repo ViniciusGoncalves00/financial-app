@@ -1,6 +1,6 @@
 import { Item } from "./item";
 
-export class Product extends Item {
+export class Service extends Item {
     private _unitOfMeasure: UnitOfMeasure;
     private _amount: number;
     

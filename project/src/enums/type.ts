@@ -1,4 +1,0 @@
-enum Type {
-    product,
-    service,
-}
