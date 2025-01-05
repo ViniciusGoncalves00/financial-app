@@ -1,7 +1,7 @@
 import { Agent } from "./agent";
-import { Base } from "./base";
+import { Entity } from "./entity";
 
-export class Transaction extends Base {
+export class Transaction extends Entity {
     private _type: TransactionType;
     private _agent: Agent;
     private _transactionDate: Date;

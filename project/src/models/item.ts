@@ -1,6 +1,6 @@
-import { Base } from "./base";
+import { Entity } from "./entity";
 
-export abstract class Item extends Base {
+export abstract class Item extends Entity {
     protected _value: number[];
     
     public constructor(id: number, creationDate: Date, lastModified: Date, name: string, description: string, value: number){

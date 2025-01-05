@@ -1,4 +1,4 @@
-export abstract class Base {
+export abstract class Entity {
     protected _id: number;
     protected _creationDate: Date;
     protected _lastModified: Date;
