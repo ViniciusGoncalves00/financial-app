@@ -1,7 +1,7 @@
 import { Product as Items } from "../models/product";
 import * as fs from "fs";
 import * as path from "path";
-import csvParser from "csv-parser";
+// import csvParser from "csv-parser";
 
 export class ItemsManager {
     private static _instance: ItemsManager;
@@ -20,6 +20,8 @@ export class ItemsManager {
         }
 
         this._instance = new ItemsManager();
+        const obj = new ItemsManager();
+        console.log(obj.toString());
     }
 
     // private loadItemsFromCSV(csvFilePath: string): void {

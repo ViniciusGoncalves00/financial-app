@@ -1,16 +1,14 @@
-<!--index.html-->
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Financial App</title>
+    <meta charset="UTF-8" />
+    <title>financial-app</title>
+    <script defer src="bundle.js"></script>
   </head>
   <body>
-    <h1>Hello World, I`m the Financial-App!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <div class="fixed w-screen h-screen flex flex-col bg-red-500">
+      <div class="w-screen h-[36px] bg-blue-500"></div>
+      <div class="w-screen grow bg-green-500"></div>
+    </div>
   </body>
 </html>
