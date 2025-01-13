@@ -1,0 +1,46 @@
+[data-theme='custom_light']
+{
+  --primary: 250, 250, 250;
+  --primary_highlight: 255, 255, 255;
+  --secondary: 200, 200, 200;
+  --primary_text: 90, 90, 90;
+  --primary_highlight_text: 30, 30, 30;
+  --primary_highlight_text: 30, 30, 30;
+  --info: 100, 100, 240;
+  --success: 100, 240, 100;
+  --warning: 240, 240, 100;
+  --error: 240, 100, 100;
+  --neutral_0: 255, 255, 255;
+  --neutral_1: 250, 250, 250;
+  --neutral_2: 245, 245, 245;
+  --neutral_3: 240, 240, 240;
+  --neutral_4: 235, 235, 235;
+  --neutral_5: 10, 10, 10;
+  --neutral_6: 15, 15, 15;
+  --neutral_7: 20, 20, 20;
+  --neutral_8: 25, 25, 25;
+  --neutral_9: 30, 30, 30;
+}
+
+[data-theme='custom_dark']
+{
+  --primary: 40, 40, 40;
+  --primary_highlight: 30, 30, 30;
+  --secondary: 20, 20, 20;
+  --primary_text: 255, 255, 255;
+  --primary_highlight_text: 250, 250, 250;
+  --info: 100, 100, 240;
+  --success: 100, 240, 100;
+  --warning: 240, 240, 100;
+  --error: 240, 100, 100;
+  --neutral-0: 255, 255, 255;
+  --neutral-1: 250, 250, 250;
+  --neutral-2: 245, 245, 245;
+  --neutral-3: 240, 240, 240;
+  --neutral-4: 235, 235, 235;
+  --neutral-5: 10, 10, 10;
+  --neutral-6: 15, 15, 15;
+  --neutral-7: 20, 20, 20;
+  --neutral-8: 25, 25, 25;
+  --neutral-9: 30, 30, 30;
+}

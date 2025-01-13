@@ -26,7 +26,26 @@
  * ```
  */
 
-import './index.css';
-import '../styles/tailwind.css';
+import './styles/index.css';
 
-console.log('👋 This message is being logged by "renderer.js", included via webpack');
+// async function navigateTo(page: string) {
+//     const content = document.getElementById('content');
+//     if (content) {
+//       try {
+//         const response = await fetch(`${page}`);
+//         if (response.ok) {
+//           const html = await response.text();
+//           content.innerHTML = html;
+//         } else {
+//           content.innerHTML = `<p>Error loading ${page}</p>`;
+//         }
+//       } catch (error) {
+//         content.innerHTML = `<p>Error loading ${page}: ${error}</p>`;
+//       }
+//     }
+//   }
+  
+//   // Example of default content
+//   document.addEventListener('DOMContentLoaded', () => {
+//     navigateTo('transactions.html');
+//   });
