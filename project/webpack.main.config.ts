@@ -2,6 +2,7 @@ import type { Configuration } from 'webpack';
 
 import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export const mainConfig: Configuration = {
   /**
@@ -13,8 +14,22 @@ export const mainConfig: Configuration = {
   module: {
     rules,
   },
-  plugins,
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/views/index.html',
+      filename: 'index.html',
+      chunks: ['renderer/main_window'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/views/header.html',
+      filename: 'header.html',
+      chunks: ['renderer/main_window'],
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+    },
   },
 };

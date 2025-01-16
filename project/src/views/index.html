@@ -28,7 +28,88 @@
           </div>
         </header>
         <div id="content" class="w-screen grow bg-neutral_1 flex items-center justify-center">
-          <div class="w-[256px] h-[32px] bg-neutral_1 drop-shadow-soft-bot-right"></div>
+          <div class="w-full h-full flex flex-col items-center justify-center gap-y-[8px]">
+            <div class="w-[768px] h-[512px] flex items-center justify-evenly gap-x-[8px]">
+              <!-- <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">janeiro</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">fevereiro</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">março</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">abril</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">maio</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">junho</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">julho</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">agosto</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">setembro</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">outubro</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">novembro</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+              <div class="w-full h-full flex flex-col items-center justify-center">
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">dezembro</div>
+                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
+                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
+              </div>
+            </div> -->
+
+            <button id="loadContentBtn">Load Content</button>
+
+            <div id="content-content">
+            </div>
+
+            <script>
+              document.getElementById('loadContentBtn').addEventListener('click', function() {
+                fetch('/main_window/header.html') // Path to the external HTML file
+                  .then(response => response.text())  // Convert the response to text
+                  .then(data => {
+                    document.getElementById('content-content').innerHTML = data; // Insert the content
+                  })
+                  .catch(error => {
+                    console.error('Error loading the file:', error);
+                  });
+              });
+            </script>
+          </div>
         </div>
       </div>
   </body>
