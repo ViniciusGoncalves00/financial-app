@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>financial-app</title>
+    <script src="../../static/scripts/renderer.js" defer></script>
   </head>
   <body class="w-screen h-screen">
       <div class="w-screen h-screen flex">
@@ -94,21 +95,8 @@
 
             <button id="loadContentBtn">Load Content</button>
 
-            <div id="content-content">
+            <div id="header-container">
             </div>
-
-            <script>
-              document.getElementById('loadContentBtn').addEventListener('click', function() {
-                fetch('/main_window/header.html') // Path to the external HTML file
-                  .then(response => response.text())  // Convert the response to text
-                  .then(data => {
-                    document.getElementById('content-content').innerHTML = data; // Insert the content
-                  })
-                  .catch(error => {
-                    console.error('Error loading the file:', error);
-                  });
-              });
-            </script>
           </div>
         </div>
       </div>
