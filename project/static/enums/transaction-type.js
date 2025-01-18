@@ -1,3 +1,4 @@
+"use strict";
 var TransactionType;
 (function (TransactionType) {
     TransactionType[TransactionType["Entry"] = 0] = "Entry";

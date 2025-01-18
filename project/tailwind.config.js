@@ -1,5 +1,6 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,ts}'],
+  content: ["./src/**/*.{html,css,js,ts}"],
   theme:
   {
     extend:
@@ -26,16 +27,16 @@ module.exports = {
         warning: "rgba(var(--warning))",
         error: "rgba(var(--error))",
 
-        neutral_0: "rgba(var(--neutral_0))",
-        neutral_1: "rgba(var(--neutral_1))",
-        neutral_2: "rgba(var(--neutral_2))",
-        neutral_3: "rgba(var(--neutral_3))",
-        neutral_4: "rgba(var(--neutral_4))",
-        neutral_5: "rgba(var(--neutral_5))",
-        neutral_6: "rgba(var(--neutral_6))",
-        neutral_7: "rgba(var(--neutral_7))",
-        neutral_8: "rgba(var(--neutral_8))",
-        neutral_9: "rgba(var(--neutral_9))",
+        neutral_0: "rgba(255, 255, 255)",
+        neutral_1: "rgba(250, 250, 250)",
+        neutral_2: "rgba(245, 245, 245)",
+        neutral_3: "rgba(240, 240, 240)",
+        neutral_4: "rgba(235, 235, 235)",
+        neutral_5: "rgba(10, 10, 10)",
+        neutral_6: "rgba(15, 15, 15)",
+        neutral_7: "rgba(20, 20, 20)",
+        neutral_8: "rgba(25, 25, 25)",
+        neutral_9: "rgba(30, 30, 30)",
       }
     },
   },

@@ -1,1 +1,40 @@
-<div class="w-[256px] h-[256px] bg-red-400 flex items-center justify-center">products</div>
+<div class="h-full w-full flex bg-neutral_2 drop-shadow-soft-bot-right">
+    <div class="w-full h-full flex flex-col items-center justify-between" x-data="{ items: ['transactions', 'cards', 'products', 'brands', 'services'] }">
+        
+        <div class="w-full h-[128px] flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>
+        </div>
+
+        <div class="w-full h-[2px] bg-neutral_9"></div>
+        <div x-data="{ message: 'Hello, User!' }">
+            <h1 class="text-2xl font-bold" x-text="message"></h1>
+        </div>
+        <div class="w-full grow flex flex-col items-center justify-center">
+          <template x-for="item in items">
+            <button @click="document.getElementById('main-content').innerHTML = await fetch(item + '.html').then(response => response.text())" class="w-full h-[64px] flex items-center justify-between hover:bg-neutral_0">
+              <div class="w-[64px] h-[64px] flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+              </div>
+              <div class="w-full h-[64px] flex items-center justify-between" x-text="item"></div>
+            </button>
+          </template>
+        </div>
+
+        <div class="w-full h-[2px] bg-neutral_9"></div>
+
+        <div class="w-full h-[128px] flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>
+        </div>
+    </div>
+    <div class="w-[8px] h-full flex items-center justify-center hover:bg-neutral_0">
+      <div class="w-[4px] h-[64px] bg-neutral_9 hover:bg-neutral_7"></div>
+    </div>
+  </div>

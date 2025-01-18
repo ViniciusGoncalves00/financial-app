@@ -1,3 +1,4 @@
+"use strict";
 var PaymentMethod;
 (function (PaymentMethod) {
 })(PaymentMethod || (PaymentMethod = {}));

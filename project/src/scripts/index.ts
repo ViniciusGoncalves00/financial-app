@@ -8,11 +8,11 @@ const createWindow = (): void => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join('./preload.js'), // Carregando o script de preload
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
-  mainWindow.loadFile(path.join(__dirname, "../../src/views/index.html")); // Carregue o arquivo HTML ou URL que você deseja
+  mainWindow.loadFile(path.join(__dirname, "../../src/views/index.html"));
 
   mainWindow.on('closed', () => {
     mainWindow = null;

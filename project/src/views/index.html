@@ -1,104 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="custom_light">
   <head>
     <meta charset="UTF-8" />
     <title>financial-app</title>
+    <script>var imports = {};</script>
+    <script>var exports = {};</script>
+    <link rel="stylesheet" href="../../static/scripts/styles/index.css">
     <script src="../../static/scripts/renderer.js" defer></script>
   </head>
-  <body class="w-screen h-screen">
-      <div class="w-screen h-screen flex">
-        <header class="w-[192px] h-full flex z-50 bg-neutral_1 drop-shadow-soft-bot-right">
-          <div class="w-full h-full flex flex-col items-center justify-between" x-data="{ items: ['transactions', 'cards', 'products', 'brands', 'services'] }">
-            <div class="w-full h-[128px] bg-red-500"></div>
-            <div class="w-full grow flex flex-col items-center justify-center">
-              <template x-for="item in items">
-                <button class="w-full h-[64px] flex items-center justify-between hover:bg-neutral_0">
-                  <div class="w-[64px] h-[64px] flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-                    </svg>
-                  </div>
-                  <div class="w-full h-[64px] flex items-center justify-between" x-text="item"></div>
-                </button>
-              </template>
-            </div>
-            <div class="w-full h-[128px] bg-red-500"></div>
-          </div>
-          <div class="w-[8px] h-full flex items-center justify-center hover:bg-neutral_0">
-            <div class="w-[4px] h-[64px] bg-neutral_9 hover:bg-neutral_7"></div>
-          </div>
-        </header>
-        <div id="content" class="w-screen grow bg-neutral_1 flex items-center justify-center">
-          <div class="w-full h-full flex flex-col items-center justify-center gap-y-[8px]">
-            <div class="w-[768px] h-[512px] flex items-center justify-evenly gap-x-[8px]">
-              <!-- <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">janeiro</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">fevereiro</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">março</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">abril</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">maio</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">junho</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">julho</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">agosto</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">setembro</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">outubro</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">novembro</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-              <div class="w-full h-full flex flex-col items-center justify-center">
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">dezembro</div>
-                <div class="w-[8.33%] h-full bg-red-500 rounded-[8px]"></div>
-                <div class="w-[8.33%] h-[32px] flex justify-center items-center">R$ 500,00</div>
-              </div>
-            </div> -->
-
-            <button id="loadContentBtn">Load Content</button>
-
-            <div id="header-container">
-            </div>
-          </div>
-        </div>
+  <body>
+      <div class="w-screen h-screen flex items-center justify-center">
+        <header id="header-container" class="w-[192px] h-full flex z-50"></header>
+        <div id="main-content" class="h-full grow flex z-100 bg-neutral_2"></div>
       </div>
   </body>
 </html>

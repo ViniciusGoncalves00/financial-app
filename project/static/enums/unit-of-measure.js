@@ -1,3 +1,4 @@
+"use strict";
 var UnitOfMeasure;
 (function (UnitOfMeasure) {
     UnitOfMeasure[UnitOfMeasure["Liters"] = 0] = "Liters";

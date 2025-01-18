@@ -1,3 +1,6 @@
+import Alpine from "alpinejs";
+import "./styles/index.css";
+
 async function loadComponent(filePath: string, targetId: string): Promise<void> {
     try {
         const response = await fetch(filePath);
@@ -12,6 +15,18 @@ async function loadComponent(filePath: string, targetId: string): Promise<void> 
     }
 }
 
+declare global {
+    interface Window {
+        Alpine: typeof Alpine;
+    }
+}
+
+window.Alpine = Alpine;
+
 document.addEventListener('DOMContentLoaded', () => {
     loadComponent('../views/header.html', 'header-container');
+
+    Alpine.start();
+    console.log("RENDERER");
+    document.documentElement.setAttribute('data-theme', 'custom_light');
 });
