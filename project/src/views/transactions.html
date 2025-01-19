@@ -1,1 +1,43 @@
-<div class="w-[256px] h-[256px] bg-red-400 flex items-center justify-center">transactions</div>
+<div id="transaction-content" class="w-full h-full flex flex-col p-[16px]">
+    <div class="w-full h-full flex flex-col items-center justify-start">
+        <div class="w-full h-[64px] flex flex-col items-center justify-start">
+            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center border-[1px] border-neutral_9 text-neutral_9 uppercase font-bold">transactions</div>
+            <div class="w-full h-[32px] flex items-center justify-evenly border-[1px] border-neutral_9 text-neutral_9 uppercase">
+                <span class="w-[9.09%] h-full flex items-center justify-center">id</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">name</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">type</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">agent</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">date</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">reference date</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">value</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">description</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">creationData</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">lastModification</span>
+                <span class="w-[9.09%] h-full flex items-center justify-center">details</span>
+            </div>
+        </div>
+        <div class="w-full grow flex flex-col items-center justify-start overflow-auto no-scrollbar border-[1px] border-neutral_9 text-neutral_9">
+            <template x-for="i in 80" :key="i">
+                <div class="w-full h-[32px] flex items-center justify-evenly">
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">id</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 != 0 ? 'bg-neutral_2' : 'bg-neutral_4'">name</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">type</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 != 0 ? 'bg-neutral_2' : 'bg-neutral_4'">agent</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">date</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 != 0 ? 'bg-neutral_2' : 'bg-neutral_4'">reference date</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">value</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 != 0 ? 'bg-neutral_2' : 'bg-neutral_4'">description</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">creationData</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 != 0 ? 'bg-neutral_2' : 'bg-neutral_4'">lastModification</span>
+                    <span class="w-[9.09%] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">details</span>
+                </div>
+            </template>
+        </div>
+        <div class="w-full h-[64px] flex flex-col items-center justify-start">
+            <div class="w-full h-[32px] flex items-center justify-center border-[1px] border-neutral_9 text-neutral_9 uppercase font-bold">register</div>
+            <div class="w-full h-[32px] flex items-center justify-evenly border-[1px] border-neutral_9 text-neutral_9 uppercase">
+                <button id="transaction-register" class="w-[128px] h-[32px] text-center align-middle border-[2px] border-neutral_7 text-neutral_7">register</button>
+            </div>
+        </div>
+    </div>
+</div>
