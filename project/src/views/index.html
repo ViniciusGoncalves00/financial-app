@@ -9,9 +9,9 @@
     <script src="../../static/scripts/renderer.js" defer></script>
   </head>
   <body x-data="">
-      <div class="w-screen h-screen flex items-center justify-center text-neutral_7">
+      <div class="fixed w-full h-screen flex items-center justify-center text-neutral_7">
         <header id="header-container" class="w-[192px] h-full flex z-50"></header>
-        <div id="main-content" class="h-full grow flex z-100 bg-neutral_2"></div>
+        <div id="main-content" class="h-full w-[calc(100%-192px)] flex z-100 bg-neutral_2"></div>
       </div>
   </body>
 </html>
