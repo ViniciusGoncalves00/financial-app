@@ -13,6 +13,10 @@ module.exports = {
       {
         "soft-bot-right": "1px 1px 4px rgb(0 0 0 / 0.25)",
       },
+      borderRadius:
+      {
+        primary: "8px"
+      },
       colors:
       {
         primary: "rgba(var(--primary))",

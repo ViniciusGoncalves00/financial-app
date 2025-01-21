@@ -1,8 +1,7 @@
-<div id="transaction-content" class="w-full h-full flex flex-col p-[16px]">
-    <div class="w-full h-full flex flex-col items-center justify-start">
+<div id="transaction-content" class="w-full h-full flex gap-x-[16px] p-[16px]">
+    <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10">
         <div class="w-full h-[64px] flex flex-col items-center justify-start">
-            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center border-[1px] border-neutral_9 text-neutral_9 uppercase font-bold">transactions</div>
-            <div class="w-full h-[32px] flex items-center justify-evenly border-[1px] border-neutral_9 text-neutral_9 uppercase">
+            <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
                 <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
                 <button class="flex-none min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
                 <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">type</button>
@@ -18,20 +17,20 @@
                 <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
             </div>
         </div>
-        <div class="w-full grow flex flex-col items-center justify-start overflow-auto no-scrollbar border-[1px] border-neutral_9 text-neutral_9">
+        <div class="w-full grow flex flex-col items-center justify-start overflow-auto no-scrollbar text-neutral_9">
             <template x-for="i in 80" :key="i">
                 <div class="w-full h-[32px] flex items-center justify-evenly">
                     <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">12345</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">VeterinárioVeterinárioVeterinário</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">Exit</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">Paçoca</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">15/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">25/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">R$ 4900.90</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque harum nam nobis eaque cupiditate exercitationem dicta, itaque odio numquam ullam dolorem eveniet, et, voluptatum a? Accusamus assumenda minima molestiae illum!</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">19/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">19/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">details</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">unnamed</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">type</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">agent</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">R$ 9999.99</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'"></span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'"></span>
                     <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -47,10 +46,20 @@
                 </div>
             </template>
         </div>
-        <div class="w-full h-[64px] flex flex-col items-center justify-start">
-            <div class="w-full h-[32px] flex items-center justify-center border-[1px] border-neutral_9 text-neutral_9 uppercase font-bold">register</div>
-            <div class="w-full h-[32px] flex items-center justify-evenly border-[1px] border-neutral_9 text-neutral_9 uppercase">
-                <button id="transaction-register" class="w-[128px] h-[32px] text-center align-middle border-[2px] border-neutral_7 text-neutral_7">register</button>
+    </div>
+    <div class="w-[256px] h-full flex flex-col items-center justify-start gap-y-[16px]">
+        <form class="w-full h-full flex flex-col items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
+            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center text-neutral_9 uppercase font-bold">register</div>
+            <div class="w-full h-[32px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
+                <button class="flex-none w-full h-[32px] flex items-center rounded-[16px] justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10">input</button>
+                <button class="flex-none w-full h-[32px] flex items-center rounded-[16px] justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10">input</button>
+                <button class="flex-none w-full h-[32px] flex items-center rounded-[16px] justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10">input</button>
+            </div>
+            <button class="flex-none w-full h-[32px] flex items-center rounded-[16px] justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10">submit</button>
+        </form>
+        <div class="w-full h-full flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
+            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center text-neutral_9 uppercase font-bold">details</div>
+            <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase">
             </div>
         </div>
     </div>
