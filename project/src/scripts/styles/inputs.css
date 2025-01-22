@@ -1,9 +1,9 @@
 @layer components {
-    .base-button {
+    .base {
         @apply text-center align-middle;
     }
     .default-button {
-        @apply base-button bg-blue-500 border-neutral_7 text-neutral_7;
+        @apply base bg-blue-500 border-neutral_7 text-neutral_7;
     }
 
     /* Hide scrollbar for IE, Edge and Firefox */
@@ -15,6 +15,10 @@
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
         display: none;
+    }
+
+    .default-input {
+        @apply base border-neutral_7 text-neutral_7 rounded-[16px];
     }
 }
 

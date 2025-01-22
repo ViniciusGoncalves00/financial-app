@@ -11,3 +11,69 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
 }
+
+.base {
+  @apply text-center align-middle;
+}
+
+.base-input {
+  @apply rounded-[4px] p-[8px] w-full h-[36px] flex items-center justify-center bg-neutral_2 hover:bg-neutral_0;
+}
+
+.base-border {
+  @apply border-neutral_7 text-neutral_7
+}
+
+.base-text-position {
+  @apply text-center align-middle
+}
+
+.base-text-position-center {
+  @apply text-center align-middle
+}
+
+.base-text-style {
+  @apply text-neutral_7 lowercase
+}
+
+.base-outline {
+  @apply outline outline-[1px] outline-black/25;
+}
+
+
+.unit {
+  @apply base-text-position-center base-border base-outline
+}
+
+.button-submit {
+  @apply base-text-position-center base-border base-outline
+}
+
+.input-number {
+  @apply base-text-position base-border base-outline base-input continuous-number;
+}
+
+.input-text {
+  @apply base-text-position base-border base-outline base-input;
+}
+
+.field-title {
+  @apply base-text-position-center base-text-style w-full h-[24px];
+}
+
+.input-field {
+  @apply w-full h-full flex flex-col items-center justify-center;
+}
+
+input.continuous-number {
+  appearance: none;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+input.continuous-number::-webkit-inner-spin-button,
+input.continuous-number::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
