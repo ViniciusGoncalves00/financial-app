@@ -1,9 +1,20 @@
-export class DatabaseManager{
+import { PathManager } from './path-manager';
+import { TransactionsManager } from './transactions-manager';
+
+export class DatabaseManager {
     private static _instance: DatabaseManager;
 
+    private _transactionsManager: TransactionsManager | null = null;
+
+    private ROOT : string;
+    private folder : string = "";
+    private filename : string = "transactions";
+    private format : string = "csv";
+
     private constructor(){
-        // const csvFilePath = path.join(__dirname, "../../../database/products.csv");
-        // this.loadItemsFromCSV(csvFilePath);
+        this.ROOT = PathManager.GetInstance().GetRoot()
+
+        this.InitializeDatabases()
     }
 
     public static GetInstance() : DatabaseManager {
@@ -13,19 +24,11 @@ export class DatabaseManager{
         return this._instance;
     }
 
-    public Create(){
-
+    private InitializeDatabases(){
+        this._transactionsManager = TransactionsManager.GetInstance();
     }
 
-    public Read(){
-        
-    }
-
-    public Update(){
-        
-    }
-
-    public Delete(){
-        
+    public GetTransactionManager(){
+        return this._transactionsManager;
     }
 }

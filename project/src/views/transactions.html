@@ -47,43 +47,43 @@
             </template>
         </div>
     </div>
-    <div class="w-[320px] h-full flex flex-col items-center justify-start gap-y-[16px]">
+    <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start gap-y-[16px]">
         <form class="w-full h-full flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle text-neutral_9 uppercase font-bold">register transaction</div>
             <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
                 <div class="input-field">
-                    <div class="field-title">name</div>
+                    <label class="field-title">name</label>
                     <input required type="text" placeholder="name" class="flex-none input-text">
                 </div>
                 <div class="input-field">
-                    <div class="field-title">type</div>
+                    <label class="field-title">type</label>
                     <select required class="flex-none input-number">
                         <option value="entry">entry</option>
                         <option value="exit">exit</option>
                     </select>
                 </div>
                 <div class="input-field">
-                    <div class="field-title">agent</div>
+                    <label class="field-title">agent</label>
                     <input required type="text" placeholder="name" class="flex-none input-number">
                 </div>
                 <div class="input-field">
-                    <div class="field-title">date</div>
+                    <label class="field-title">date</label>
                     <input required type="date" placeholder="date" class="flex-none input-number">
                 </div>
                 <div class="input-field">
-                    <div class="field-title">reference date</div>
+                    <label class="field-title">reference date</label>
                     <input required type="date" placeholder="reference date" class="flex-none input-number">
                 </div>
                 <div class="input-field">
-                    <div class="field-title">Value</div>
+                    <label class="field-title">value</label>
                     <input required type="number" placeholder="R$ 0,00" step="0.01" class="input-number flex-grow">
                 </div>
                 <div class="input-field">
-                    <div class="field-title">details</div>
+                    <label class="field-title">details</label>
                     <input type="checkbox">
                 </div>
             </div>
-            <input type="submit" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10">
+            <input @click="$store.TransactionsManager.Create({'name': 'name', 'type': 'entry', 'date': '2025-01-23', 'referenceDate': '2025-01-23', 'value': '199', 'details': null})" id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer">
         </form>
         <div class="w-full h-full flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
             <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center text-neutral_9 uppercase font-bold">details</div>

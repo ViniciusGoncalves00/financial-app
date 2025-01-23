@@ -10,9 +10,9 @@ export abstract class Item extends Entity {
         this._value.push(value);
     }
 
-    public Get(){
+    public GetInfo(){
         return {
-            ...super.Get(),
+            ...super.GetInfo(),
 
             value: this._value,
         };

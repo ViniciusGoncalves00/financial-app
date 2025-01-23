@@ -13,7 +13,7 @@ export abstract class Entity {
         this._description = description;
     }
 
-    public Get(){
+    public GetInfo(){
         return {
             id: this._id,
             creationDate: this._creationDate,

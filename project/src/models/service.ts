@@ -11,9 +11,9 @@ export class Service extends Item {
         this._amount = amount;
     }
 
-    public Get() {
+    public GetInfo() {
         return {
-            ...super.Get(),
+            ...super.GetInfo(),
             
             unitOfMeasure: this._unitOfMeasure,
             amount: this._amount

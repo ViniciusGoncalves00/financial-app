@@ -50,5 +50,12 @@
         "name": "Vinicius",
         "email": "viniciusgoncalves2000@hotmail.com"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "@types/csv-parse": "^1.1.12",
+        "@types/csv-stringify": "^1.4.3",
+        "csv-parse": "^5.6.0",
+        "csv-parser": "^3.1.0",
+        "csv-stringify": "^6.5.2"
+    }
 }
