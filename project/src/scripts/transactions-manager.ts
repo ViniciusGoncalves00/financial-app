@@ -37,8 +37,8 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
         name: string,
         type: string,
         agent: string,
-        date: string,
-        referenceDate: string,
+        date: Date,
+        referenceDate: Date,
         value: number,
         description: string,
         details?: string)
@@ -47,14 +47,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
         
         try {
             if (!fs.existsSync(file)) {
-                const header = [
-                    "id", "creationDate", "lastModified", "name", "description", "type", "agent",
-                    "transactionDate", "referenceDate", "value", "name", "details"
-                ];
-
-                const newCSV = stringify([], { header: true });
-                fs.writeFileSync(file, newCSV, 'utf-8');
-                console.log("CSV file created with header.");
+                console.error('Error processing CSV file: file does not exists.');
             }
 
             const fileContent = fs.readFileSync(file, 'utf-8');
@@ -65,8 +58,14 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
 
             const newId = records.length > 0 ? Math.max(...records.map((r: any) => parseInt(r.id))) + 1 : 1;
 
-            const currentDate = new Date();
-            const formattedDate = currentDate.toISOString().split('T')[0];
+            let currentDate = new Date();
+
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const day = currentDate.getDate();
+
+            currentDate = new Date(year, month, day);
+            const formattedcurrentDate = currentDate.toISOString().split('T')[0];
 
             // let detailsPath: string | undefined;
             // if (transactionData.details && fs.existsSync(path.join(this.ROOT, transactionData.details))) {
@@ -90,9 +89,6 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 console.error('Error processing CSV file transaction type:', error);
             }
 
-            const transactionDate = new Date(2025, 1, 30);
-            const referenceDate = new Date(2025, 1, 30);
-
             const transaction = new Transaction(
                 newId,
                 currentDate,
@@ -101,7 +97,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 description,
                 transactionType,
                 agent,
-                transactionDate,
+                date,
                 referenceDate,
                 value,
                 details || "",
@@ -111,14 +107,14 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
 
             const transactionPlain = {
                 id: newId,
-                creationDate: currentDate.toISOString(),
-                lastModified: currentDate.toISOString(),
+                creationDate: formattedcurrentDate,
+                lastModified: formattedcurrentDate,
                 name: name,
                 description: description,
                 type: type,
                 agent: agent,
-                transactionDate: transactionDate.toISOString(),
-                referenceDate: referenceDate.toISOString(),
+                transactionDate: date,
+                referenceDate: referenceDate,
                 value: value,
                 details: details || "",
             };
@@ -141,7 +137,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
         try {
             if (!fs.existsSync(file)) {
                 const header = [
-                    "id", "creationDate", "lastModified", "name", "description", "type", "agent", "transactionDate", "referenceDate", 
+                    "id", "creation", "lastModified", "name", "description", "type", "agent", "date", "referenceDate", 
                     "value", "name", "details"
                 ];
 
@@ -157,22 +153,24 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 columns: true,
                 skip_empty_lines: true
             });
-
-            this._transactions = records.map((record: any) => {
+            
+            for (let i = 0; i < records.length; i++) {
                 const transaction = new Transaction(
-                    record.newId,
-                    record.currentDate,
-                    record.currentDate,
-                    record.name,
-                    record.description,
-                    record.type,
-                    record.agent,
-                    record.transactionDate,
-                    record.referenceDate,
-                    record.value,
-                    record.details || "",
-                    )
-                })
+                    records[i].id,
+                    records[i].creation,
+                    records[i].lastModified,
+                    records[i].name,
+                    records[i].description,
+                    records[i].type,
+                    records[i].agent,
+                    records[i].date,
+                    records[i].referenceDate,
+                    records[i].value,
+                    records[i].details || "",
+                )
+                this._transactions.push(transaction);
+            }
+
 
             console.log('Transactions successfully read from CSV file.');
         } catch (error) {
@@ -189,6 +187,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
     }
 
     public GetTransactions(): Transaction[] {
+        console.log(this._transactions)
         return this._transactions;
     }
 }

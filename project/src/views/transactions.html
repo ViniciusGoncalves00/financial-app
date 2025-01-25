@@ -20,18 +20,18 @@
             </div>
             <div x-data="{ transactions : $store.TransactionsManager.GetTransactions() }" class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
                 <template x-for="(transaction, index) in transactions" :key="index">
-                    <div class="w-full h-[32px] flex items-center justify-evenly">
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">12345</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">unnamed</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">type</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">agent</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">01/01/2025</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">01/01/2025</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">R$ 9999.99</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'"></span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">01/01/2025</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">01/01/2025</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'"></span>
+                    <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.transactionDate">01/01/2025</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.referenceDate">01/01/2025</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.value">R$ 9999.99</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.creationDate">creationDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.lastModified">lastModified</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.details"></span>
                         <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -56,9 +56,9 @@
         <div class="w-full h-[calc(100%-256px)] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle text-neutral_9 uppercase font-bold">register transaction</div>
             <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
-                <div id="name" class="input-field">
+                <div class="input-field">
                     <label class="field-title">name</label>
-                    <input required type="text" placeholder="name" class="flex-none input-text">
+                    <input id="name" required type="text" placeholder="name" class="flex-none input-text">
                 </div>
                 <div class="input-field">
                     <label class="field-title">type</label>
@@ -67,28 +67,27 @@
                         <option value="exit">exit</option>
                     </select>
                 </div>
-                <div id="agent" class="input-field">
+                <div class="input-field">
                     <label class="field-title">agent</label>
-                    <input required type="text" placeholder="name" class="flex-none input-number">
+                    <input id="agent" required type="text" placeholder="name" class="flex-none input-number">
                 </div>
-                <div id="date" class="input-field">
+                <div class="input-field">
                     <label class="field-title">date</label>
-                    <input required type="date" placeholder="date" class="flex-none input-number">
+                    <input id="date" required type="date" placeholder="date" class="flex-none input-number">
                 </div>
-                <div id="referenceDate" class="input-field">
+                <div class="input-field">
                     <label class="field-title">reference date</label>
-                    <input required type="date" placeholder="reference date" class="flex-none input-number">
+                    <input id="referenceDate" required type="date" placeholder="reference date" class="flex-none input-number">
                 </div>
-                <div id="value" class="input-field">
+                <div class="input-field">
                     <label class="field-title">value</label>
-                    <input required type="number" placeholder="R$ 0,00" step="0.01" class="input-number flex-grow">
+                    <input id="value" required type="number" placeholder="R$ 0,00" step="0.01" class="input-number flex-grow">
                 </div>
-                <div id="details" class="input-field">
+                <div class="input-field">
                     <label class="field-title">details</label>
-                    <input type="checkbox">
+                    <input id="details" type="checkbox">
                 </div>
             </div>
-            <button class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer"></button>
             <input @click="$store.TransactionsManager.Create(
                 document.querySelector('#name').value, 
                 document.querySelector('#type').value, 
