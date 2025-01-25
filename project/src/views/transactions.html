@@ -1,6 +1,6 @@
-<div id="transaction-content" class="w-full h-full flex gap-x-[16px] p-[16px]">
+<div id="transaction-content" class="main-content">
     <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-between gap-y-[16px]">
-        <div class="w-full h-[100%-256px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10">
+        <div class="w-full h-[calc(100%-256px)] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
             <div class="w-full h-[64px] flex flex-col items-center justify-start">
                 <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
                     <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
@@ -18,8 +18,8 @@
                     <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
                 </div>
             </div>
-            <div class="w-full max-h-[calc(100%-320px)] flex-none flex-col items-center justify-start overflow-auto no-scrollbar text-neutral_9">
-                <template x-for="i in 20" :key="i">
+            <div class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
+                <template x-for="i in 30" :key="i">
                     <div class="w-full h-[32px] flex items-center justify-evenly">
                         <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">12345</span>
                         <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">unnamed</span>
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start gap-y-[16px]">
-        <div class="w-full h-full flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]">
+        <div class="w-full h-[calc(100%-256px)] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle text-neutral_9 uppercase font-bold">register transaction</div>
             <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
                 <div id="name" class="input-field">
@@ -99,7 +99,7 @@
                 document.querySelector('#details').checked ? 'true' : 'false'
             )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer">
         </div>
-        <div class="w-full h-full flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
+        <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
             <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center text-neutral_9 uppercase font-bold">details</div>
             <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase"></div>
         </div>

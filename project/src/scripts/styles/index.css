@@ -65,6 +65,10 @@ body {
   @apply w-full h-full flex flex-col items-center justify-center;
 }
 
+.main-content {
+  @apply w-full h-full flex gap-[16px] p-[16px]
+}
+
 input.continuous-number {
   appearance: none;
   margin: 0;
