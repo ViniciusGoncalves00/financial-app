@@ -9,7 +9,7 @@ class Entity {
         this._name = name;
         this._description = description;
     }
-    Get() {
+    GetInfo() {
         return {
             id: this._id,
             creationDate: this._creationDate,

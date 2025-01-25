@@ -6,9 +6,11 @@ import { IDelete } from '../interfaces/idelete';
 import { Transaction } from '../models/transaction';
 import { PathManager } from './path-manager';
 import { parse } from "csv-parse/sync";
-import { stringify } from "csv-stringify/sync"
+import { stringify } from "csv-stringify/sync";
+import { TransactionType } from "../enums/transaction-type";
+import path from 'path';
 
-export class TransactionsManager implements ICreate, IRead, IUpdate, IDelete {
+export class TransactionsManager implements IRead, IUpdate, IDelete {
     private static _instance: TransactionsManager;
 
     private _transactions: Transaction[] = [];
@@ -25,36 +27,37 @@ export class TransactionsManager implements ICreate, IRead, IUpdate, IDelete {
     }
 
     public static GetInstance() : TransactionsManager {
-        if(this._instance !== null){
-            this._instance == new TransactionsManager();
+        if (this._instance == null) {
+            this._instance = new TransactionsManager();
         }
         return this._instance;
     }
 
-    public Create(transactionData: {
+    public Create(
         name: string,
         type: string,
         agent: string,
-        transactionDate: string,
+        date: string,
         referenceDate: string,
         value: number,
         description: string,
-        details?: string
-        })
+        details?: string)
     {
+        const file = path.join(this.ROOT, "database", "transactions.csv")
+        
         try {
-            if (!fs.existsSync(this.ROOT)) {
+            if (!fs.existsSync(file)) {
                 const header = [
-                    "id", "type", "agent", "transactionDate", "referenceDate",
-                    "value", "creationDate", "lastModified", "name", "description", "details"
+                    "id", "creationDate", "lastModified", "name", "description", "type", "agent",
+                    "transactionDate", "referenceDate", "value", "name", "details"
                 ];
 
                 const newCSV = stringify([], { header: true });
-                fs.writeFileSync(this.ROOT, newCSV, 'utf-8');
+                fs.writeFileSync(file, newCSV, 'utf-8');
                 console.log("CSV file created with header.");
             }
 
-            const fileContent = fs.readFileSync(this.ROOT, 'utf-8');
+            const fileContent = fs.readFileSync(file, 'utf-8');
             const records = parse(fileContent, {
                 columns: true,
                 skip_empty_lines: true
@@ -70,14 +73,14 @@ export class TransactionsManager implements ICreate, IRead, IUpdate, IDelete {
             //     detailsPath = transactionData.details;
             // }
 
-            let type = TransactionType.Entry
-            transactionData.type = transactionData.type.toLowerCase();
+            let transactionType = TransactionType.Entry
+            type = type.toLowerCase();
             try {
-                if(transactionData.type == "entry"){
-                    type = TransactionType.Entry;
+                if(type == "entry"){
+                    transactionType = TransactionType.Entry;
                 }
-                else if(transactionData.type == "exit"){
-                    type = TransactionType.Exit;
+                else if(type == "exit"){
+                    transactionType = TransactionType.Exit;
                 }
                 else{
                     console.error('Invalid transaction type.');
@@ -94,21 +97,36 @@ export class TransactionsManager implements ICreate, IRead, IUpdate, IDelete {
                 newId,
                 currentDate,
                 currentDate,
-                transactionData.name,
-                transactionData.description,
-                type,
-                transactionData.agent,
+                name,
+                description,
+                transactionType,
+                agent,
                 transactionDate,
                 referenceDate,
-                transactionData.value,
-                transactionData.details || "",
+                value,
+                details || "",
             )
             
             this._transactions.push(transaction);
-            records.push(transaction);
+
+            const transactionPlain = {
+                id: newId,
+                creationDate: currentDate.toISOString(),
+                lastModified: currentDate.toISOString(),
+                name: name,
+                description: description,
+                type: type,
+                agent: agent,
+                transactionDate: transactionDate.toISOString(),
+                referenceDate: referenceDate.toISOString(),
+                value: value,
+                details: details || "",
+            };
+
+            records.push(transactionPlain);
 
             const updatedCSV = stringify(records, { header: true });
-            fs.writeFileSync(this.ROOT, updatedCSV, 'utf-8');
+            fs.writeFileSync(file, updatedCSV, 'utf-8');
             console.log('Transaction successfully added to CSV file.');
         }
         catch (error) {
@@ -117,19 +135,24 @@ export class TransactionsManager implements ICreate, IRead, IUpdate, IDelete {
     }
 
     public Read() {
+        const file = path.join(this.ROOT, "database", "transactions.csv")
+        console.log(file)
+
         try {
-            if (!fs.existsSync(this.ROOT)) {
+            if (!fs.existsSync(file)) {
                 const header = [
-                    "id", "type", "agent", "transactionDate", "referenceDate", 
-                    "value", "creationDate", "lastModified", "name", "description", "details"
+                    "id", "creationDate", "lastModified", "name", "description", "type", "agent", "transactionDate", "referenceDate", 
+                    "value", "name", "details"
                 ];
 
                 const newCSV = stringify([], { header: true });
-                fs.writeFileSync(this.ROOT, newCSV, 'utf-8');
+                fs.writeFileSync(file, newCSV, 'utf-8');
                 console.log("CSV file created with header.");
             }
 
-            const fileContent = fs.readFileSync(this.ROOT, 'utf-8');
+            
+            const fileContent = fs.readFileSync(file, 'utf-8');
+            console.log(fileContent)
             const records = parse(fileContent, {
                 columns: true,
                 skip_empty_lines: true
@@ -140,14 +163,14 @@ export class TransactionsManager implements ICreate, IRead, IUpdate, IDelete {
                     record.newId,
                     record.currentDate,
                     record.currentDate,
-                    record.transactionData.name,
-                    record.transactionData.description,
+                    record.name,
+                    record.description,
                     record.type,
-                    record.transactionData.agent,
+                    record.agent,
                     record.transactionDate,
                     record.referenceDate,
-                    record.transactionData.value,
-                    record.transactionData.details || "",
+                    record.value,
+                    record.details || "",
                     )
                 })
 

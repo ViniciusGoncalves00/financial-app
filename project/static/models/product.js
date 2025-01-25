@@ -8,8 +8,8 @@ class Product extends item_1.Item {
         this._unitOfMeasure = unitOfMeasure;
         this._amount = amount;
     }
-    Get() {
-        return Object.assign(Object.assign({}, super.Get()), { unitOfMeasure: this._unitOfMeasure, amount: this._amount });
+    GetInfo() {
+        return Object.assign(Object.assign({}, super.GetInfo()), { unitOfMeasure: this._unitOfMeasure, amount: this._amount });
     }
 }
 exports.Product = Product;

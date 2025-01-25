@@ -1,90 +1,104 @@
 <div id="transaction-content" class="w-full h-full flex gap-x-[16px] p-[16px]">
-    <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10">
-        <div class="w-full h-[64px] flex flex-col items-center justify-start">
-            <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
-                <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
-                <button class="flex-none min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
-                <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">type</button>
-                <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">agent</button>
-                <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">date</button>
-                <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">reference date</button>
-                <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">value</button>
-                <button class="flex-none min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">description</button>
-                <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">creation</button>
-                <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">modification</button>
-                <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">details</button>
-                <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
-                <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
+    <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-between gap-y-[16px]">
+        <div class="w-full h-[100%-256px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10">
+            <div class="w-full h-[64px] flex flex-col items-center justify-start">
+                <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
+                    <button class="flex-none min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
+                    <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">type</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">agent</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">date</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">reference date</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">value</button>
+                    <button class="flex-none min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">description</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">creation</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">modification</button>
+                    <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">details</button>
+                    <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
+                    <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
+                </div>
+            </div>
+            <div class="w-full max-h-[calc(100%-320px)] flex-none flex-col items-center justify-start overflow-auto no-scrollbar text-neutral_9">
+                <template x-for="i in 20" :key="i">
+                    <div class="w-full h-[32px] flex items-center justify-evenly">
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">12345</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">unnamed</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">type</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">agent</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">R$ 9999.99</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'"></span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'"></span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>
+                        </span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg>
+                        </span>
+                    </div>
+                </template>
             </div>
         </div>
-        <div class="w-full grow flex flex-col items-center justify-start overflow-auto no-scrollbar text-neutral_9">
-            <template x-for="i in 80" :key="i">
-                <div class="w-full h-[32px] flex items-center justify-evenly">
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">12345</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">unnamed</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">type</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">agent</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">R$ 9999.99</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'"></span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">01/01/2025</span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'"></span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                        </svg>
-                    </span>
-                    <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="i % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_4'">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                        </svg>
-                    </span>
-                </div>
-            </template>
+        <div class="w-full h-[256px] bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10">
+
         </div>
     </div>
     <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start gap-y-[16px]">
-        <form class="w-full h-full flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]">
+        <div class="w-full h-full flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle text-neutral_9 uppercase font-bold">register transaction</div>
             <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
-                <div class="input-field">
+                <div id="name" class="input-field">
                     <label class="field-title">name</label>
                     <input required type="text" placeholder="name" class="flex-none input-text">
                 </div>
                 <div class="input-field">
                     <label class="field-title">type</label>
-                    <select required class="flex-none input-number">
+                    <select id="type" required class="flex-none input-number">
                         <option value="entry">entry</option>
                         <option value="exit">exit</option>
                     </select>
                 </div>
-                <div class="input-field">
+                <div id="agent" class="input-field">
                     <label class="field-title">agent</label>
                     <input required type="text" placeholder="name" class="flex-none input-number">
                 </div>
-                <div class="input-field">
+                <div id="date" class="input-field">
                     <label class="field-title">date</label>
                     <input required type="date" placeholder="date" class="flex-none input-number">
                 </div>
-                <div class="input-field">
+                <div id="referenceDate" class="input-field">
                     <label class="field-title">reference date</label>
                     <input required type="date" placeholder="reference date" class="flex-none input-number">
                 </div>
-                <div class="input-field">
+                <div id="value" class="input-field">
                     <label class="field-title">value</label>
                     <input required type="number" placeholder="R$ 0,00" step="0.01" class="input-number flex-grow">
                 </div>
-                <div class="input-field">
+                <div id="details" class="input-field">
                     <label class="field-title">details</label>
                     <input type="checkbox">
                 </div>
             </div>
-            <input @click="$store.TransactionsManager.Create({'name': 'name', 'type': 'entry', 'date': '2025-01-23', 'referenceDate': '2025-01-23', 'value': '199', 'details': null})" id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer">
-        </form>
+            <button class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer"></button>
+            <input @click="$store.TransactionsManager.Create(
+                document.querySelector('#name').value, 
+                document.querySelector('#type').value, 
+                document.querySelector('#agent').value, 
+                document.querySelector('#date').value, 
+                document.querySelector('#referenceDate').value, 
+                parseFloat(document.querySelector('#value').value), 
+                document.querySelector('#details').checked ? 'true' : 'false'
+            )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer">
+        </div>
         <div class="w-full h-full flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
             <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center text-neutral_9 uppercase font-bold">details</div>
             <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase"></div>

@@ -6,11 +6,12 @@ export class PathManager{
     private ROOT : string;
      
     private constructor(){
-        this.ROOT = path.resolve(__dirname, "..", "..");
+        this.ROOT = path.resolve(__dirname, '..', '..', '..');
+        console.log(this.ROOT)
     }
 
     public static GetInstance() : PathManager {
-        if (!this._instance) {
+        if (this._instance == null) {
             this._instance = new PathManager();
         }
         return this._instance;

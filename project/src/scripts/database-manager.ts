@@ -18,9 +18,10 @@ export class DatabaseManager {
     }
 
     public static GetInstance() : DatabaseManager {
-        if(this._instance !== null){
-            this._instance == new DatabaseManager();
+        if (this._instance == null) {
+            this._instance = new DatabaseManager();
         }
+        
         return this._instance;
     }
 

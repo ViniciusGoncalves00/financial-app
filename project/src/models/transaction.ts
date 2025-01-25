@@ -1,3 +1,4 @@
+import { TransactionType } from "../enums/transaction-type";
 import { Entity } from "./entity";
 
 export class Transaction extends Entity {

@@ -8,8 +8,8 @@ class Item extends entity_1.Entity {
         this._value = [];
         this._value.push(value);
     }
-    Get() {
-        return Object.assign(Object.assign({}, super.Get()), { value: this._value });
+    GetInfo() {
+        return Object.assign(Object.assign({}, super.GetInfo()), { value: this._value });
     }
 }
 exports.Item = Item;

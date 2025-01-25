@@ -1,4 +1,4 @@
-enum TransactionType {
+export enum TransactionType {
     Entry,
     Exit,
 }
