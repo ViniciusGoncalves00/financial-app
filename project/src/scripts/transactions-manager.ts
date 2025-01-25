@@ -187,4 +187,8 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
     public Delete(){
         
     }
+
+    public GetTransactions(): Transaction[] {
+        return this._transactions;
+    }
 }
