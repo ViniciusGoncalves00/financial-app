@@ -4,12 +4,12 @@ import { Entity } from "./entity";
 export class Transaction extends Entity {
     private _type: TransactionType;
     private _agent: string;
-    private _transactionDate: Date;
-    private _referenceDate: Date;
+    private _transactionDate: Number;
+    private _referenceDate: Number;
     private _value: number;
     private _details: string | null;
 
-    public constructor(id: number, creationDate: Date, lastModified: Date, name: string, description: string, type: TransactionType, agent: string, transactionDate: Date, referenceDate: Date, value: number, details: string | null){
+    public constructor(id: number, creationDate: Number, lastModified: Number, name: string, description: string, type: TransactionType, agent: string, transactionDate: Number, referenceDate: Number, value: number, details: string | null){
     	super(id, creationDate, lastModified, name, description);
 
         this._type = type;

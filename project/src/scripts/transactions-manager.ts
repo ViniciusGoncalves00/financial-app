@@ -37,8 +37,8 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
         name: string,
         type: string,
         agent: string,
-        date: Date,
-        referenceDate: Date,
+        date: string,
+        referenceDate: string,
         value: number,
         description: string,
         details?: string)
@@ -58,14 +58,11 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
 
             const newId = records.length > 0 ? Math.max(...records.map((r: any) => parseInt(r.id))) + 1 : 1;
 
-            let currentDate = new Date();
+            const currentDateTicks = new Date().getTime();
+            const transactionDateTicks = new Date(date).getTime();
+            const referenceDateTicks = new Date(referenceDate).getTime();
 
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            const day = currentDate.getDate();
-
-            currentDate = new Date(year, month, day);
-            const formattedcurrentDate = currentDate.toISOString().split('T')[0];
+            console.log(currentDateTicks)
 
             // let detailsPath: string | undefined;
             // if (transactionData.details && fs.existsSync(path.join(this.ROOT, transactionData.details))) {
@@ -91,39 +88,37 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
 
             const transaction = new Transaction(
                 newId,
-                currentDate,
-                currentDate,
+                currentDateTicks,
+                currentDateTicks,
                 name,
                 description,
                 transactionType,
                 agent,
-                date,
-                referenceDate,
+                transactionDateTicks,
+                referenceDateTicks,
                 value,
                 details || "",
             )
-            
-            this._transactions.push(transaction);
 
             const transactionPlain = {
                 id: newId,
-                creationDate: formattedcurrentDate,
-                lastModified: formattedcurrentDate,
+                creationDate: currentDateTicks,
+                lastModifiedDate: currentDateTicks,
                 name: name,
                 description: description,
                 type: type,
                 agent: agent,
-                transactionDate: date,
-                referenceDate: referenceDate,
+                transactionDate: transactionDateTicks,
+                referenceDate: referenceDateTicks,
                 value: value,
                 details: details || "",
             };
 
+            this._transactions.push(transaction);
             records.push(transactionPlain);
 
             const updatedCSV = stringify(records, { header: true });
             fs.writeFileSync(file, updatedCSV, 'utf-8');
-            console.log('Transaction successfully added to CSV file.');
         }
         catch (error) {
             console.error('Error processing CSV file:', error);
@@ -132,23 +127,20 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
 
     public Read() {
         const file = path.join(this.ROOT, "database", "transactions.csv")
-        console.log(file)
 
         try {
             if (!fs.existsSync(file)) {
                 const header = [
-                    "id", "creation", "lastModified", "name", "description", "type", "agent", "date", "referenceDate", 
+                    "id", "creationDate", "lastModifiedDate", "name", "description", "type", "agent", "transactionDate", "referenceDate", 
                     "value", "name", "details"
                 ];
 
                 const newCSV = stringify([], { header: true });
                 fs.writeFileSync(file, newCSV, 'utf-8');
-                console.log("CSV file created with header.");
             }
 
             
             const fileContent = fs.readFileSync(file, 'utf-8');
-            console.log(fileContent)
             const records = parse(fileContent, {
                 columns: true,
                 skip_empty_lines: true
@@ -157,22 +149,21 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
             for (let i = 0; i < records.length; i++) {
                 const transaction = new Transaction(
                     records[i].id,
-                    records[i].creation,
-                    records[i].lastModified,
+                    parseInt(records[i].creationDate),
+                    parseInt(records[i].lastModifiedDate),
                     records[i].name,
                     records[i].description,
                     records[i].type,
                     records[i].agent,
-                    records[i].date,
-                    records[i].referenceDate,
-                    records[i].value,
+                    parseInt(records[i].transactionDate),
+                    parseInt(records[i].referenceDate),
+                    parseFloat(records[i].value),
                     records[i].details || "",
                 )
                 this._transactions.push(transaction);
+                console.log(transaction)
             }
 
-
-            console.log('Transactions successfully read from CSV file.');
         } catch (error) {
             console.error('Error reading CSV file:', error);
         }
@@ -187,7 +178,6 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
     }
 
     public GetTransactions(): Transaction[] {
-        console.log(this._transactions)
         return this._transactions;
     }
 }

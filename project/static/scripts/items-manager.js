@@ -48,7 +48,6 @@ class ItemsManager {
         }
         this._instance = new ItemsManager();
         const obj = new ItemsManager();
-        console.log(obj.toString());
     }
 }
 exports.ItemsManager = ItemsManager;

@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadComponent('../views/header.html', 'header-container');
 
     Alpine.start();
-    console.log("RENDERER");
     const pathManager = PathManager.GetInstance();
     const transactionsManager = DatabaseManager.GetInstance().GetTransactionManager()
     Alpine.store("TransactionsManager", transactionsManager);

@@ -1,11 +1,11 @@
 export abstract class Entity {
     protected _id: number;
-    protected _creationDate: Date;
-    protected _lastModified: Date;
+    protected _creationDate: Number;
+    protected _lastModified: Number;
     protected _name: string;
     protected _description: string;
     
-    public constructor(id: number, creationDate: Date, lastModified: Date, name: string, description: string){
+    public constructor(id: number, creationDate: Number, lastModified: Number, name: string, description: string){
         this._id = id;
         this._creationDate = creationDate;
         this._lastModified = lastModified;
