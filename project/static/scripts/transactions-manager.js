@@ -71,20 +71,9 @@ class TransactionsManager {
                 skip_empty_lines: true
             });
             const newId = records.length > 0 ? Math.max(...records.map((r) => parseInt(r.id))) + 1 : 1;
-            const currentDate = new Date();
-            const currentDateTicks = currentDate.getTime();
-            console.log(currentDate);
-            console.log(currentDate.getTime());
-            console.log(date);
-            const typedDate = new Date(date);
-            const dateTicks = typedDate.getTime();
-            console.log(typedDate);
-            console.log(typedDate.getTime());
-            console.log(referenceDate);
-            const typedReferenceDate = new Date(referenceDate);
-            const referenceDateTicks = typedReferenceDate.getTime();
-            console.log(typedReferenceDate);
-            console.log(typedReferenceDate.getTime());
+            const currentDateTicks = new Date().getTime();
+            const transactionDateTicks = new Date(date).getTime();
+            const referenceDateTicks = new Date(referenceDate).getTime();
             // let detailsPath: string | undefined;
             // if (transactionData.details && fs.existsSync(path.join(this.ROOT, transactionData.details))) {
             //     detailsPath = transactionData.details;
@@ -105,25 +94,24 @@ class TransactionsManager {
             catch (error) {
                 console.error('Error processing CSV file transaction type:', error);
             }
-            const transaction = new transaction_1.Transaction(newId, currentDateTicks, currentDateTicks, name, description, transactionType, agent, dateTicks, referenceDateTicks, value, details || "");
-            this._transactions.push(transaction);
+            const transaction = new transaction_1.Transaction(newId, currentDateTicks, currentDateTicks, name, description, transactionType, agent, transactionDateTicks, referenceDateTicks, value, details || "");
             const transactionPlain = {
                 id: newId,
-                creationDate: currentDate,
-                lastModified: currentDate,
+                creationDate: currentDateTicks,
+                lastModifiedDate: currentDateTicks,
                 name: name,
                 description: description,
                 type: type,
                 agent: agent,
-                transactionDate: typedDate,
-                referenceDate: typedReferenceDate,
+                transactionDate: transactionDateTicks,
+                referenceDate: referenceDateTicks,
                 value: value,
                 details: details || "",
             };
+            this._transactions.push(transaction);
             records.push(transactionPlain);
             const updatedCSV = (0, sync_2.stringify)(records, { header: true });
             fs.writeFileSync(file, updatedCSV, 'utf-8');
-            console.log('Transaction successfully added to CSV file.');
         }
         catch (error) {
             console.error('Error processing CSV file:', error);
@@ -134,12 +122,11 @@ class TransactionsManager {
         try {
             if (!fs.existsSync(file)) {
                 const header = [
-                    "id", "creation", "lastModified", "name", "description", "type", "agent", "date", "referenceDate",
+                    "id", "creationDate", "lastModifiedDate", "name", "description", "type", "agent", "transactionDate", "referenceDate",
                     "value", "name", "details"
                 ];
                 const newCSV = (0, sync_2.stringify)([], { header: true });
                 fs.writeFileSync(file, newCSV, 'utf-8');
-                console.log("CSV file created with header.");
             }
             const fileContent = fs.readFileSync(file, 'utf-8');
             const records = (0, sync_1.parse)(fileContent, {
@@ -147,10 +134,10 @@ class TransactionsManager {
                 skip_empty_lines: true
             });
             for (let i = 0; i < records.length; i++) {
-                const transaction = new transaction_1.Transaction(records[i].id, records[i].creation, records[i].lastModified, records[i].name, records[i].description, records[i].type, records[i].agent, records[i].date, records[i].referenceDate, records[i].value, records[i].details || "");
+                const transaction = new transaction_1.Transaction(records[i].id, parseInt(records[i].creationDate), parseInt(records[i].lastModifiedDate), records[i].name, records[i].description, records[i].type, records[i].agent, parseInt(records[i].transactionDate), parseInt(records[i].referenceDate), parseFloat(records[i].value), records[i].details || "");
                 this._transactions.push(transaction);
+                console.log(transaction);
             }
-            console.log('Transactions successfully read from CSV file.');
         }
         catch (error) {
             console.error('Error reading CSV file:', error);
@@ -161,7 +148,6 @@ class TransactionsManager {
     Delete() {
     }
     GetTransactions() {
-        console.log(this._transactions);
         return this._transactions;
     }
 }
