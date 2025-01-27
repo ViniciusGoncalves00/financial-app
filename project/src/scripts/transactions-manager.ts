@@ -61,9 +61,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
             const currentDateTicks = new Date().getTime();
             const transactionDateTicks = new Date(date).getTime();
             const referenceDateTicks = new Date(referenceDate).getTime();
-
-            console.log(currentDateTicks)
-
+            
             // let detailsPath: string | undefined;
             // if (transactionData.details && fs.existsSync(path.join(this.ROOT, transactionData.details))) {
             //     detailsPath = transactionData.details;

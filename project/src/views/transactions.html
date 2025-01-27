@@ -4,15 +4,15 @@
             <div class="w-full h-[32px] flex flex-col items-center justify-start">
                 <div class="w-full h-full flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
                     <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
-                    <button class="flex-none min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
                     <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">type</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">agent</button>
                     <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">date</button>
                     <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">reference date</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">value</button>
-                    <button class="flex-none min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">description</button>
                     <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">creation</button>
                     <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">modification</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">value</button>
+                    <button class="flex-none min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
+                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">agent</button>
+                    <button class="flex-none min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">description</button>
                     <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">details</button>
                     <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
                     <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
@@ -30,18 +30,18 @@
                 class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
                 <template x-for="(transaction, index) in transactions" :key="index">
                     <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.transactionDate)">transactionDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.referenceDate)">referenceDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.value">value</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.creationDate)">creationDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.lastModified)">lastModified</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.details"></span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.transactionDate)">transactionDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.referenceDate)">referenceDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.creationDate)">creationDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.lastModified)">lastModified</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.value">value</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] min-w-[128px] max-w-[256px] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.details"></span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
