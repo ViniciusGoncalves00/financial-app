@@ -18,25 +18,17 @@
                     <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
                 </div>
             </div>
-            <div x-data="{ transactions : $store.TransactionsManager.GetTransactions(),
-            GetFormattedDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-        });
-    }}"
+            <div x-data="{ transactions : $store.TransactionsManager.GetTransactions() }"
                 class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
                 <template x-for="(transaction, index) in transactions" :key="index">
                     <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
                         <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
                         <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.transactionDate)">transactionDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.referenceDate)">referenceDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.creationDate)">creationDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="GetFormattedDate(data.lastModified)">lastModified</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.value">value</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)">creationDate</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)">lastModified</span>
+                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.NumberToMonetaryString(data.value)">value</span>
                         <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] min-w-[128px] max-w-[256px] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
                         <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
                         <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
@@ -115,7 +107,7 @@
 </div>
 
 <script>
-    function GetFormattedDate(ticks) {
+    function $store.Formatter.NumberToMonetaryString(ticks) {
         const date = new Date(ticks); // Cria um objeto Date a partir dos ticks
     
         const day = String(date.getDate()).padStart(2, '0'); // Obtém o dia (2 dígitos)

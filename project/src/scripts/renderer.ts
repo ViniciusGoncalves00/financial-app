@@ -2,6 +2,7 @@ import Alpine from "alpinejs";
 import "./styles/index.css";
 import { DatabaseManager } from "./database-manager";
 import { PathManager } from "./path-manager";
+import { Formatter } from "./formatter";
 
 async function loadComponent(filePath: string, targetId: string): Promise<void> {
     try {
@@ -32,5 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const pathManager = PathManager.GetInstance();
     const transactionsManager = DatabaseManager.GetInstance().GetTransactionManager()
     Alpine.store("TransactionsManager", transactionsManager);
+    Alpine.store("Formatter", Formatter);
     document.documentElement.setAttribute('data-theme', 'custom_light');
 });
