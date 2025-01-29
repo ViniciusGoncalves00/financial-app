@@ -38,13 +38,12 @@ const path = __importStar(require("path"));
 let mainWindow;
 const createWindow = () => {
     mainWindow = new electron_1.BrowserWindow({
-        width: 800,
-        height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
             contextIsolation: false,
         },
+        fullscreen: true,
     });
     mainWindow.loadFile(path.join(__dirname, "../../src/views/index.html"));
     mainWindow.on('closed', () => {

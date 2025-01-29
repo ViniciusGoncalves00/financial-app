@@ -1,6 +1,6 @@
 <div id="transaction-content" class="main-content">
     <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-between gap-y-[16px]">
-        <div class="w-full h-[calc(100%-256px)] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
+        <div class="w-full h-[calc(100%-256px)] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
             <div class="w-full h-[32px] flex flex-col items-center justify-start">
                 <div class="w-full h-full flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
                     <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
@@ -49,12 +49,31 @@
                 </template>
             </div>
         </div>
-        <div class="w-full h-[256px] bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10">
 
+        <div class="w-full h-[256px] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
+            <div class="w-full h-[32px] flex flex-col items-center justify-start">
+                <div class="w-full h-full flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">unitary value</button>
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">amount</button>
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">total value</button>
+                </div>
+            </div>
+            <div x-data="{ transactions : $store.TransactionsManager.GetTransactions() }"
+                class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
+                <template x-for="(transaction, index) in transactions" :key="index">
+                    <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
+                    </div>
+                </template>
+            </div>
         </div>
     </div>
     <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start gap-y-[16px]">
-        <div class="w-full h-[calc(100%-256px)] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
+        <div class="w-full h-[calc(100%-256px)] min-h-[128px] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle text-neutral_9 uppercase font-bold">register transaction</div>
             <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
                 <div class="input-field">
