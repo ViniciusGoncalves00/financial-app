@@ -4,7 +4,7 @@ import { IRead } from '../interfaces/iread';
 import { IUpdate } from '../interfaces/iupdate';
 import { IDelete } from '../interfaces/idelete';
 import { Transaction } from '../models/transaction';
-import { PathManager } from './path-manager';
+import { PathManager } from '../scripts/path-manager';
 import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
 import { TransactionType } from "../enums/transaction-type";

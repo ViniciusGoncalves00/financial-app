@@ -1,4 +1,4 @@
-import { PathManager } from './path-manager';
+import { PathManager } from '../scripts/path-manager';
 import { TransactionsManager } from './transactions-manager';
 
 export class DatabaseManager {

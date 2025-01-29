@@ -22,18 +22,18 @@
                 class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
                 <template x-for="(transaction, index) in transactions" :key="index">
                     <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)">creationDate</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)">lastModified</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.NumberToMonetaryString(data.value)">value</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] min-w-[128px] max-w-[256px] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[128px] h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.details"></span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 px-[8px] flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)">creationDate</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)">lastModified</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.NumberToMonetaryString(data.value)">value</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] min-w-[128px] max-w-[256px] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.details"></span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
@@ -105,16 +105,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function $store.Formatter.NumberToMonetaryString(ticks) {
-        const date = new Date(ticks); // Cria um objeto Date a partir dos ticks
-    
-        const day = String(date.getDate()).padStart(2, '0'); // Obtém o dia (2 dígitos)
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Obtém o mês (2 dígitos, +1 porque getMonth é zero-based)
-        const year = date.getFullYear(); // Obtém o ano
-    
-        return `${day}-${month}-${year}`; // Retorna no formato dd-mm-yyyy
-    }
-    
-</script>
