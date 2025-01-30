@@ -10,7 +10,7 @@ export class Transaction extends Entity {
     private _details: string | null;
 
     public constructor(id: string | null = null, creationDate: Number, lastModified: Number, name: string, description: string, type: TransactionType, agent: string, transactionDate: Number, referenceDate: Number, value: number, details: string | null){
-    	super(id, creationDate, lastModified, name, description);
+        super(id, creationDate, lastModified, name, description);
 
         this._type = type;
         this._agent = agent;

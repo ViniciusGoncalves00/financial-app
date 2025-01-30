@@ -3,44 +3,43 @@
         <div class="w-full h-[calc(100%-256px)] min-h-[128px] overflow-auto no-scrollbar">
             <table class="w-full border-collapse">
                 <thead>
-                    <th class="w-full h-full flex items-center justify-center bg-neutral_2 text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">transactions</th>
                     <tr class="bg-neutral_2 text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
-                        <th class="table-pattern-1 w-[64px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">ID</th>
-                        <th class="table-pattern-1 w-[64px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Type</th>
-                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Date</th>
-                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Reference Date</th>
-                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Creation</th>
-                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Modification</th>
-                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Value</th>
-                        <th class="table-pattern-1 min-w-[128px] max-w-[256px] grow cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Name</th>
-                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Agent</th>
-                        <th class="table-pattern-1 min-w-[128px] max-w-[calc(100%-1280px)] grow cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Description</th>
-                        <th class="table-pattern-1 w-[64px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Details</th>
-                        <th class="table-pattern-1 w-[32px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal"></th>
-                        <th class="table-pattern-1 w-[32px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal"></th>
+                        <th class="table-header w-[64px]">ID</th>
+                        <th class="table-header w-[64px]">Type</th>
+                        <th class="table-header w-[128px]">Date</th>
+                        <th class="table-header w-[128px]">Reference Date</th>
+                        <th class="table-header w-[128px]">Creation</th>
+                        <th class="table-header w-[128px]">Modification</th>
+                        <th class="table-header w-[128px]">Value</th>
+                        <th class="table-header min-w-[128px] max-w-[256px] grow">Name</th>
+                        <th class="table-header w-[128px]">Agent</th>
+                        <th class="table-header min-w-[128px] max-w-[calc(100%-1280px)] grow">Description</th>
+                        <th class="table-header w-[64px]">Details</th>
+                        <th class="table-header w-[32px]"></th>
+                        <th class="table-header w-[32px]"></th>
                     </tr>
                 </thead>
                 <tbody x-data="{ transactions: $store.TransactionsManager.GetTransactions() }">
                     <template x-for="(transaction, index) in transactions" :key="index">
                         <tr x-data="{ data: transaction.GetInfo() }" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'" class="hover:bg-neutral_0 hover:text-neutral_5">
-                            <td class="table-pattern-1" x-text="data.id"></td>
-                            <td class="table-pattern-1" x-text="data.type"></td>
-                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)"></td>
-                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)"></td>
-                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)"></td>
-                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)"></td>
-                            <td class="table-pattern-1" x-text="$store.Formatter.NumberToMonetaryString(data.value)"></td>
-                            <td class="table-pattern-1 overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.name"></td>
-                            <td class="table-pattern-1 overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.agent"></td>
-                            <td class="table-pattern-1 overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.description"></td>
-                            <td class="table-pattern-1" x-text="data.details"></td>
-                            <td class="table-pattern-1 text-center">
+                            <td class="table-cell" x-text="data.id"></td>
+                            <td class="table-cell" x-text="data.type"></td>
+                            <td class="table-cell" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)"></td>
+                            <td class="table-cell" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)"></td>
+                            <td class="table-cell" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)"></td>
+                            <td class="table-cell" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)"></td>
+                            <td class="table-cell" x-text="$store.Formatter.NumberToMonetaryString(data.value)"></td>
+                            <td class="table-cell overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.name"></td>
+                            <td class="table-cell overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.agent"></td>
+                            <td class="table-cell overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.description"></td>
+                            <td class="table-cell" x-text="data.details"></td>
+                            <td class="table-cell text-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                                 </svg>
                             </td>
-                            <td class="table-pattern-1 text-center">
+                            <td class="table-cell text-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
@@ -52,30 +51,29 @@
             </table>
         </div>
 
-        <div class="w-full h-[256px] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
-            <div class="w-full h-[32px] flex flex-col items-center justify-start">
-                <div class="w-full h-full flex items-center justify-evenly uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">name</button>
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">unitary value</button>
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">amount</button>
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">total value</button>
-                </div>
-            </div>
-            <div x-data="{ transactions : $store.TransactionsManager.GetTransactions() }"
-                class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start">
+        <table class="w-full h-[256px] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
+            <thead class="w-full h-[32px] flex flex-col items-center justify-start">
+                <tr class="w-full bg-neutral_2 h-full flex items-center justify-evenly  text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <td class="table-header w-1/4 h-full">name</td>
+                    <td class="table-header w-1/4 h-full">unitary value</td>
+                    <td class="table-header w-1/4 h-full">amount</td>
+                    <td class="table-header w-1/4 h-full">total value</td>
+                </tr>
+            </thead>
+            <tbody x-data="{ transactions : $store.TransactionsManager.GetTransactions() }" class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start">
                 <template x-for="(transaction, index) in transactions" :key="index">
-                    <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="data.id">id</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="data.type">type</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
-                    </div>
+                    <tr x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly hover:bg-neutral_0 hover:text-neutral_5" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'">
+                        <td class="table-cell flex-none w-1/4 h-full" x-text="data.id">id</td>
+                        <td class="table-cell flex-none w-1/4 h-full" x-text="data.type">type</td>
+                        <td class="table-cell flex-none w-1/4 h-full" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</td>
+                        <td class="table-cell flex-none w-1/4 h-full" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</td>
+                    </tr>
                 </template>
-            </div>
-        </div>
+            </tbody>
+        </table>
     </div>
     <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start">
-        <div class="w-full h-[calc(100%-256px)] min-h-[128px] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
+        <div class="w-full h-full min-h-[128px] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle uppercase font-bold">register transaction</div>
             <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly uppercase">
                 <div class="input-field">
@@ -110,6 +108,11 @@
                     <input id="details" type="checkbox">
                 </div>
             </div>
+            <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 p-[16px]">
+                <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center
+                 uppercase font-bold">details</div>
+                <div class="w-full h-[32px] flex items-center justify-evenly uppercase"></div>
+            </div>
             <input @click="$store.TransactionsManager.Create(
                 document.querySelector('#name').value, 
                 document.querySelector('#type').value, 
@@ -118,12 +121,12 @@
                 document.querySelector('#referenceDate').value, 
                 parseFloat(document.querySelector('#value').value), 
                 document.querySelector('#details').checked ? 'true' : 'false'
-            )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_1 outline outline-[2px] outline-black/10 cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">
+            )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_1 outline outline-[2px] outline-black/10">
         </div>
-        <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 p-[16px]">
+        <!-- <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 p-[16px]">
             <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center
              uppercase font-bold">details</div>
             <div class="w-full h-[32px] flex items-center justify-evenly uppercase"></div>
-        </div>
+        </div> -->
     </div>
 </div>

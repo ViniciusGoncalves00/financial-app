@@ -3,17 +3,17 @@ import { ICreate } from '../interfaces/icreate';
 import { IRead } from '../interfaces/iread';
 import { IUpdate } from '../interfaces/iupdate';
 import { IDelete } from '../interfaces/idelete';
-import { Transaction } from '../models/transaction';
+import { Product } from '../models/product';
 import { PathManager } from '../scripts/path-manager';
 import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
 import { TransactionType } from "../enums/transaction-type";
 import path from 'path';
 
-export class TransactionsManager implements IRead, IUpdate, IDelete {
-    private static _instance: TransactionsManager;
+export class ProductsManager implements ICreate, IRead, IUpdate, IDelete {
+    private static _instance: ProductsManager;
 
-    private _transactions: Transaction[] = [];
+    private _products: Product[] = [];
 
     private ROOT : string;
     private _database : string = "database";
@@ -30,22 +30,14 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
         this.Read();
     }
 
-    public static GetInstance() : TransactionsManager {
+    public static GetInstance() : ProductsManager {
         if (this._instance == null) {
-            this._instance = new TransactionsManager();
+            this._instance = new ProductsManager();
         }
         return this._instance;
     }
 
-    public Create(
-        name: string,
-        type: string,
-        agent: string,
-        date: string,
-        referenceDate: string,
-        value: number,
-        description: string,
-        details?: string)
+    public Create(data : [])
     {
         try {
             if (!fs.existsSync(this._transactionsFile)) {
@@ -58,16 +50,13 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 skip_empty_lines: true
             });
 
+
+
             const newId = records.length > 0 ? Math.max(...records.map((r: any) => parseInt(r.id))) + 1 : 1;
 
             const currentDateTicks = new Date().getTime();
             const transactionDateTicks = new Date(date).getTime();
             const referenceDateTicks = new Date(referenceDate).getTime();
-            
-            // let detailsPath: string | undefined;
-            // if (transactionData.details && fs.existsSync(path.join(this.ROOT, transactionData.details))) {
-            //     detailsPath = transactionData.details;
-            // }
 
             let transactionType = TransactionType.Entry
             type = type.toLowerCase();
@@ -86,7 +75,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 console.error('Error processing CSV file transaction type:', error);
             }
 
-            const transaction = new Transaction(
+            const product = new Product(
                 currentDateTicks,
                 currentDateTicks,
                 name,
@@ -99,8 +88,8 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 details || "",
             )
 
-            const transactionPlain = {
-                id: transaction.GetInfo().id,
+            const productPlain = {
+                id: newId,
                 creationDate: currentDateTicks,
                 lastModifiedDate: currentDateTicks,
                 name: name,
@@ -113,8 +102,8 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                 details: details || "",
             };
 
-            this._transactions.push(transaction);
-            records.push(transactionPlain);
+            this._products.push(product);
+            records.push(productPlain);
 
             const updatedCSV = stringify(records, { header: true });
             fs.writeFileSync(this._transactionsFile, updatedCSV, 'utf-8');
@@ -157,7 +146,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                     parseFloat(records[i].value),
                     records[i].details || "",
                 )
-                this._transactions.push(transaction);
+                this._products.push(transaction);
                 console.log(transaction)
             }
 
@@ -175,6 +164,6 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
     }
 
     public GetTransactions(): Transaction[] {
-        return this._transactions;
+        return this._products;
     }
 }

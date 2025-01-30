@@ -4,7 +4,7 @@ export class Service extends Item {
     private _unitOfMeasure: UnitOfMeasure;
     private _amount: number;
     
-    public constructor(id: number, creationDate: number, lastModified: number, name: string, description: string, value: number, unitOfMeasure: UnitOfMeasure, amount: number){
+    public constructor(id: string | null = null, creationDate: number, lastModified: number, name: string, description: string, value: number, unitOfMeasure: UnitOfMeasure, amount: number){
         super(id, creationDate, lastModified, name, description, value);
 
         this._unitOfMeasure = unitOfMeasure;

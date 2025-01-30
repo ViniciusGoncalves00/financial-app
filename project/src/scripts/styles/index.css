@@ -64,8 +64,16 @@ body {
   @apply w-full h-full flex flex-col items-center justify-center;
 }
 
-.table-pattern-1 {
-  @apply text-center align-middle border border-neutral_4 p-[4px]
+.table-header {
+  @apply flex-none flex-nowrap text-center align-middle border border-neutral_4 p-[4px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal
+}
+
+.table-row {
+  @apply flex-none flex-nowrap text-center align-middle border border-neutral_4 p-[4px]
+}
+
+.table-cell {
+  @apply flex-none flex-nowrap text-center align-middle border border-neutral_4 p-[4px]
 }
 
 .main-content {

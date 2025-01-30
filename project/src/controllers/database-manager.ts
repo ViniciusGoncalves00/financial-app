@@ -1,10 +1,12 @@
 import { PathManager } from '../scripts/path-manager';
 import { TransactionsManager } from './transactions-manager';
+import { ProductsManager } from './products-manager';
 
 export class DatabaseManager {
     private static _instance: DatabaseManager;
 
     private _transactionsManager: TransactionsManager | null = null;
+    private _productsManager: ProductsManager | null = null;
 
     private ROOT : string;
     private folder : string = "";
@@ -27,6 +29,7 @@ export class DatabaseManager {
 
     private InitializeDatabases(){
         this._transactionsManager = TransactionsManager.GetInstance();
+        this._productsManager = ProductsManager.GetInstance();
     }
 
     public GetTransactionManager(){
