@@ -2,18 +2,23 @@ import { Entity } from "./entity";
 
 export abstract class Item extends Entity {
     protected _value: number[];
-    
-    public constructor(id: string | null = null, creationDate: number, lastModified: number, name: string, description: string, value: number){
-    	super(id, creationDate, lastModified, name, description)
 
-        this._value = [];
-        this._value.push(value);
+    public constructor(
+        name: string,
+        description: string,
+        value: number,
+        id?: string,
+        creationDate?: number,
+        lastModified?: number
+    ) {
+        super(name, description, id, creationDate, lastModified);
+
+        this._value = [value];
     }
 
-    public getInfo(){
+    public getInfo() {
         return {
             ...super.getInfo(),
-
             value: this._value,
         };
     }

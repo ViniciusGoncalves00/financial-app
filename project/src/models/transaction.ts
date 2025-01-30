@@ -9,8 +9,20 @@ export class Transaction extends Entity {
     private _value: number;
     private _details: string | null;
 
-    public constructor(id: string | null = null, creationDate: number, lastModified: number, name: string, description: string, type: TransactionType, agent: string, transactionDate: number, referenceDate: number, value: number, details: string | null){
-    	super(id, creationDate, lastModified, name, description);
+    public constructor(
+        name: string, 
+        description: string, 
+        type: TransactionType, 
+        agent: string, 
+        transactionDate: number, 
+        referenceDate: number, 
+        value: number, 
+        details: string | null,
+        id?: string, 
+        creationDate?: number, 
+        lastModified?: number
+    ) {
+        super(name, description, id, creationDate, lastModified);
 
         this._type = type;
         this._agent = agent;
@@ -20,10 +32,9 @@ export class Transaction extends Entity {
         this._details = details;
     }
 
-    public getInfo(){
+    public getInfo() {
         return {
             ...super.getInfo(),
-
             type: this._type,
             agent: this._agent,
             transactionDate: this._transactionDate,

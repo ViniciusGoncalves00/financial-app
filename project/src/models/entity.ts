@@ -7,7 +7,13 @@ export abstract class Entity {
     protected _name: string;
     protected _description: string;
     
-    public constructor(id: string | null = null, creationDate: number = Date.now(), lastModified: number = Date.now(), name: string, description: string){
+    public constructor(
+        name: string,
+        description: string,
+        id: string | null = null,
+        creationDate: number = Date.now(),
+        lastModified: number = Date.now()
+    ) {
         this._id = id ?? nanoid();
         this._creationDate = creationDate;
         this._lastModified = lastModified;
@@ -15,7 +21,7 @@ export abstract class Entity {
         this._description = description;
     }
 
-    public getInfo(){
+    public getInfo() {
         return {
             id: this._id,
             creationDate: this._creationDate,

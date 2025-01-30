@@ -3,13 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Item = void 0;
 const entity_1 = require("./entity");
 class Item extends entity_1.Entity {
-    constructor(id, creationDate, lastModified, name, description, value) {
-        super(id, creationDate, lastModified, name, description);
-        this._value = [];
-        this._value.push(value);
+    constructor(name, description, value, id, creationDate, lastModified) {
+        super(name, description, id, creationDate, lastModified);
+        this._value = [value];
     }
-    GetInfo() {
-        return Object.assign(Object.assign({}, super.GetInfo()), { value: this._value });
+    getInfo() {
+        return Object.assign(Object.assign({}, super.getInfo()), { value: this._value });
     }
 }
 exports.Item = Item;

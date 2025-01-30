@@ -7,163 +7,138 @@ import { Product } from '../models/product';
 import { PathManager } from '../scripts/path-manager';
 import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
-import { TransactionType } from "../enums/transaction-type";
 import path from 'path';
 
-export class ProductsManager implements ICreate, IRead, IUpdate, IDelete {
+export class ProductsManager implements IRead, IUpdate, IDelete {
     private static _instance: ProductsManager;
-
     private _products: Product[] = [];
 
-    private ROOT : string;
-    private _database : string = "database";
-    private _details : string = "details";
-    private _filename : string = "transactions.csv";
-    private _transactionsFile : string;
-    private _details_path : string;
+    private ROOT: string;
+    private _database: string = "database";
+    private _details: string = "details";
+    private _filename: string = "products.csv";
+    private _productsFile: string;
+    private _detailsPath: string;
 
-    private constructor(){
+    private constructor() {
         this.ROOT = PathManager.GetInstance().GetRoot();
-        this._transactionsFile = path.join(this.ROOT, this._database, this._filename)
-        this._details_path = path.join(this.ROOT, this._database, this._details)
-
+        this._productsFile = path.join(this.ROOT, this._database, this._filename);
+        this._detailsPath = path.join(this.ROOT, this._database, this._details);
         this.Read();
     }
 
-    public static GetInstance() : ProductsManager {
-        if (this._instance == null) {
+    public static GetInstance(): ProductsManager {
+        if (!this._instance) {
             this._instance = new ProductsManager();
         }
         return this._instance;
     }
 
-    public Create(data : [])
-    {
+    public Create(
+        name: string,
+        description: string,
+        value: number,
+        unitOfMeasure: string,
+        amount: number
+    ) {
         try {
-            if (!fs.existsSync(this._transactionsFile)) {
-                console.error('Error processing CSV file: file does not exists.');
+            if (!fs.existsSync(this._productsFile)) {
+                console.error('Error processing CSV file: file does not exist.');
+                return;
             }
 
-            const fileContent = fs.readFileSync(this._transactionsFile, 'utf-8');
+            const fileContent = fs.readFileSync(this._productsFile, 'utf-8');
             const records = parse(fileContent, {
                 columns: true,
                 skip_empty_lines: true
             });
 
-
-
-            const newId = records.length > 0 ? Math.max(...records.map((r: any) => parseInt(r.id))) + 1 : 1;
-
-            const currentDateTicks = new Date().getTime();
-            const transactionDateTicks = new Date(date).getTime();
-            const referenceDateTicks = new Date(referenceDate).getTime();
-
-            let transactionType = TransactionType.Entry
-            type = type.toLowerCase();
+            // Converter a unidade de medida
+            let parsedUnit: UnitOfMeasure;
             try {
-                if(type == "entry"){
-                    transactionType = TransactionType.Entry;
+                parsedUnit = UnitOfMeasure[unitOfMeasure as keyof typeof UnitOfMeasure];
+                if (!parsedUnit) {
+                    console.error('Invalid unit of measure.');
+                    return;
                 }
-                else if(type == "exit"){
-                    transactionType = TransactionType.Exit;
-                }
-                else{
-                    console.error('Invalid transaction type.');
-                }
-            }
-            catch (error) {
-                console.error('Error processing CSV file transaction type:', error);
+            } catch (error) {
+                console.error('Error processing unit of measure:', error);
+                return;
             }
 
             const product = new Product(
-                currentDateTicks,
-                currentDateTicks,
                 name,
                 description,
-                transactionType,
-                agent,
-                transactionDateTicks,
-                referenceDateTicks,
                 value,
-                details || "",
-            )
+                parsedUnit,
+                amount
+            );
 
             const productPlain = {
-                id: newId,
-                creationDate: currentDateTicks,
-                lastModifiedDate: currentDateTicks,
+                id: product.getInfo().id,
+                creationDate: product.getInfo().creationDate,
+                lastModifiedDate: product.getInfo().lastModified,
                 name: name,
                 description: description,
-                type: type,
-                agent: agent,
-                transactionDate: transactionDateTicks,
-                referenceDate: referenceDateTicks,
                 value: value,
-                details: details || "",
+                unitOfMeasure: unitOfMeasure,
+                amount: amount,
             };
 
             this._products.push(product);
             records.push(productPlain);
 
             const updatedCSV = stringify(records, { header: true });
-            fs.writeFileSync(this._transactionsFile, updatedCSV, 'utf-8');
-        }
-        catch (error) {
+            fs.writeFileSync(this._productsFile, updatedCSV, 'utf-8');
+        } catch (error) {
             console.error('Error processing CSV file:', error);
         }
     }
 
     public Read() {
         try {
-            if (!fs.existsSync(this._transactionsFile)) {
+            if (!fs.existsSync(this._productsFile)) {
                 const header = [
-                    "id", "creationDate", "lastModifiedDate", "name", "description", "type", "agent", "transactionDate", "referenceDate", 
-                    "value", "name", "details"
+                    "id", "creationDate", "lastModifiedDate", "name", "description", "value", "unitOfMeasure", "amount"
                 ];
 
                 const newCSV = stringify([], { header: true });
-                fs.writeFileSync(this._transactionsFile, newCSV, 'utf-8');
+                fs.writeFileSync(this._productsFile, newCSV, 'utf-8');
             }
 
-            
-            const fileContent = fs.readFileSync(this._transactionsFile, 'utf-8');
+            const fileContent = fs.readFileSync(this._productsFile, 'utf-8');
             const records = parse(fileContent, {
                 columns: true,
                 skip_empty_lines: true
             });
-            
-            for (let i = 0; i < records.length; i++) {
-                const transaction = new Transaction(
-                    records[i].id,
-                    parseInt(records[i].creationDate),
-                    parseInt(records[i].lastModifiedDate),
-                    records[i].name,
-                    records[i].description,
-                    records[i].type,
-                    records[i].agent,
-                    parseInt(records[i].transactionDate),
-                    parseInt(records[i].referenceDate),
-                    parseFloat(records[i].value),
-                    records[i].details || "",
-                )
-                this._products.push(transaction);
-                console.log(transaction)
-            }
 
+            for (const record of records) {
+                const product = new Product(
+                    record.name,
+                    record.description,
+                    parseFloat(record.value),
+                    record.unitOfMeasure as UnitOfMeasure,
+                    parseFloat(record.amount),
+                    record.id,
+                    parseInt(record.creationDate),
+                    parseInt(record.lastModifiedDate)
+                );
+                this._products.push(product);
+            }
         } catch (error) {
             console.error('Error reading CSV file:', error);
         }
     }
 
-    public Update(){
-        
+    public Update() {
+        // Implementar método de atualização
     }
 
-    public Delete(){
-        
+    public Delete() {
+        // Implementar método de deleção
     }
 
-    public GetTransactions(): Transaction[] {
+    public GetProducts(): Product[] {
         return this._products;
     }
 }
