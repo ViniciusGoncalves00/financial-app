@@ -87,6 +87,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
             }
 
             const transaction = new Transaction(
+                null,
                 currentDateTicks,
                 currentDateTicks,
                 name,
@@ -100,7 +101,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
             )
 
             const transactionPlain = {
-                id: transaction.GetInfo().id,
+                id: transaction.getInfo().id,
                 creationDate: currentDateTicks,
                 lastModifiedDate: currentDateTicks,
                 name: name,

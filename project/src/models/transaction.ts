@@ -4,12 +4,12 @@ import { Entity } from "./entity";
 export class Transaction extends Entity {
     private _type: TransactionType;
     private _agent: string;
-    private _transactionDate: Number;
-    private _referenceDate: Number;
+    private _transactionDate: number;
+    private _referenceDate: number;
     private _value: number;
     private _details: string | null;
 
-    public constructor(id: string | null = null, creationDate: Number, lastModified: Number, name: string, description: string, type: TransactionType, agent: string, transactionDate: Number, referenceDate: Number, value: number, details: string | null){
+    public constructor(id: string | null = null, creationDate: number, lastModified: number, name: string, description: string, type: TransactionType, agent: string, transactionDate: number, referenceDate: number, value: number, details: string | null){
     	super(id, creationDate, lastModified, name, description);
 
         this._type = type;
@@ -20,9 +20,9 @@ export class Transaction extends Entity {
         this._details = details;
     }
 
-    public GetInfo(){
+    public getInfo(){
         return {
-            ...super.GetInfo(),
+            ...super.getInfo(),
 
             type: this._type,
             agent: this._agent,
