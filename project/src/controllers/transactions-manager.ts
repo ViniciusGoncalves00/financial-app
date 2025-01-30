@@ -117,7 +117,7 @@ export class TransactionsManager implements IRead, IUpdate, IDelete {
                     records[i].details || "",
                     records[i].id,
                     parseInt(records[i].creationDate),
-                    parseInt(records[i].lastModified)
+                    parseInt(records[i].lastModifiedDate)
                 );
                 this._transactions.push(transaction);
             }

@@ -21,7 +21,7 @@
                 </thead>
                 <tbody x-data="{ transactions: $store.TransactionsManager.GetTransactions() }">
                     <template x-for="(transaction, index) in transactions" :key="index">
-                        <tr x-data="{ data: transaction.GetInfo() }" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'" class="hover:bg-neutral_0 hover:text-neutral_5">
+                        <tr x-data="{ data: transaction.getInfo() }" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'" class="hover:bg-neutral_0 hover:text-neutral_5">
                             <td class="table-cell" x-text="data.id"></td>
                             <td class="table-cell" x-text="data.type"></td>
                             <td class="table-cell" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)"></td>
@@ -62,7 +62,7 @@
             </thead>
             <tbody x-data="{ transactions : $store.TransactionsManager.GetTransactions() }" class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start">
                 <template x-for="(transaction, index) in transactions" :key="index">
-                    <tr x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly hover:bg-neutral_0 hover:text-neutral_5" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'">
+                    <tr x-data="{ data : transaction.getInfo()}" class="w-full h-[32px] flex items-center justify-evenly hover:bg-neutral_0 hover:text-neutral_5" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'">
                         <td class="table-cell flex-none w-1/4 h-full" x-text="data.id">id</td>
                         <td class="table-cell flex-none w-1/4 h-full" x-text="data.type">type</td>
                         <td class="table-cell flex-none w-1/4 h-full" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</td>
