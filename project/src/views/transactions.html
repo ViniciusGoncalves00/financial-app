@@ -1,81 +1,83 @@
 <div id="transaction-content" class="main-content">
-    <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-between gap-y-[16px]">
-        <div class="w-full h-[calc(100%-256px)] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
-            <div class="w-full h-[32px] flex flex-col items-center justify-start">
-                <div class="w-full h-full flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
-                    <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">id</button>
-                    <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">type</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">date</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">reference date</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">creation</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">modification</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">value</button>
-                    <button class="flex-none min-w-[128px] max-w-[256px] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
-                    <button class="flex-none w-[128px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">agent</button>
-                    <button class="flex-none min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">description</button>
-                    <button class="flex-none w-[64px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">details</button>
-                    <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
-                    <button class="flex-none w-[32px] h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0"></button>
-                </div>
-            </div>
-            <div x-data="{ transactions : $store.TransactionsManager.GetTransactions() }"
-                class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
-                <template x-for="(transaction, index) in transactions" :key="index">
-                    <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)">creationDate</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)">lastModified</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.NumberToMonetaryString(data.value)">value</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] min-w-[128px] max-w-[256px] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.name">name</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[128px] h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.agent">agent</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] min-w-[128px] max-w-[calc(100%-1280px)] grow h-full flex items-center justify-start overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.description">description</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[64px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.details"></span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                            </svg>
-                        </span>
-                        <span class="hover:border-b-[2px] hover:border-yellow-500 flex-none w-[32px] h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                            </svg>
-                        </span>
-                    </div>
-                </template>
-            </div>
+    <div class="w-[calc(100%-256px)] h-full flex flex-col items-center justify-between">
+        <div class="w-full h-[calc(100%-256px)] min-h-[128px] overflow-auto no-scrollbar">
+            <table class="w-full border-collapse">
+                <thead>
+                    <th class="w-full h-full flex items-center justify-center bg-neutral_2 text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">transactions</th>
+                    <tr class="bg-neutral_2 text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                        <th class="table-pattern-1 w-[64px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">ID</th>
+                        <th class="table-pattern-1 w-[64px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Type</th>
+                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Date</th>
+                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Reference Date</th>
+                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Creation</th>
+                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Modification</th>
+                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Value</th>
+                        <th class="table-pattern-1 min-w-[128px] max-w-[256px] grow cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Name</th>
+                        <th class="table-pattern-1 w-[128px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Agent</th>
+                        <th class="table-pattern-1 min-w-[128px] max-w-[calc(100%-1280px)] grow cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Description</th>
+                        <th class="table-pattern-1 w-[64px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">Details</th>
+                        <th class="table-pattern-1 w-[32px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal"></th>
+                        <th class="table-pattern-1 w-[32px] cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal"></th>
+                    </tr>
+                </thead>
+                <tbody x-data="{ transactions: $store.TransactionsManager.GetTransactions() }">
+                    <template x-for="(transaction, index) in transactions" :key="index">
+                        <tr x-data="{ data: transaction.GetInfo() }" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'" class="hover:bg-neutral_0 hover:text-neutral_5">
+                            <td class="table-pattern-1" x-text="data.id"></td>
+                            <td class="table-pattern-1" x-text="data.type"></td>
+                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)"></td>
+                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)"></td>
+                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.creationDate)"></td>
+                            <td class="table-pattern-1" x-text="$store.Formatter.MilisecondsToDateString(data.lastModified)"></td>
+                            <td class="table-pattern-1" x-text="$store.Formatter.NumberToMonetaryString(data.value)"></td>
+                            <td class="table-pattern-1 overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.name"></td>
+                            <td class="table-pattern-1 overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.agent"></td>
+                            <td class="table-pattern-1 overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.description"></td>
+                            <td class="table-pattern-1" x-text="data.details"></td>
+                            <td class="table-pattern-1 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                                </svg>
+                            </td>
+                            <td class="table-pattern-1 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
         </div>
 
-        <div class="w-full h-[256px] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
+        <div class="w-full h-[256px] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
             <div class="w-full h-[32px] flex flex-col items-center justify-start">
-                <div class="w-full h-full flex items-center justify-evenly text-neutral_9 uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">name</button>
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">unitary value</button>
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">amount</button>
-                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_0">total value</button>
+                <div class="w-full h-full flex items-center justify-evenly uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">name</button>
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">unitary value</button>
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">amount</button>
+                    <button class="flex-none w-1/4 h-full flex items-center justify-center bg-neutral_2 hover:bg-neutral_1">total value</button>
                 </div>
             </div>
             <div x-data="{ transactions : $store.TransactionsManager.GetTransactions() }"
-                class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start text-neutral_9">
+                class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start">
                 <template x-for="(transaction, index) in transactions" :key="index">
                     <div x-data="{ data : transaction.GetInfo()}" class="w-full h-[32px] flex items-center justify-evenly">
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.id">id</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="data.type">type</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
-                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_4' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="data.id">id</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="data.type">type</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</span>
+                        <span class="hover:border-b-[1px] hover:border-amber-600 px-[8px] flex-none w-1/4 h-full flex items-center justify-center" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_2'" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</span>
                     </div>
                 </template>
             </div>
         </div>
     </div>
-    <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start gap-y-[16px]">
-        <div class="w-full h-[calc(100%-256px)] min-h-[128px] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
-            <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle text-neutral_9 uppercase font-bold">register transaction</div>
-            <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly text-neutral_9 uppercase">
+    <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start">
+        <div class="w-full h-[calc(100%-256px)] min-h-[128px] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
+            <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle uppercase font-bold">register transaction</div>
+            <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly uppercase">
                 <div class="input-field">
                     <label class="field-title">name</label>
                     <input id="name" required type="text" placeholder="name" class="flex-none input-text">
@@ -116,11 +118,12 @@
                 document.querySelector('#referenceDate').value, 
                 parseFloat(document.querySelector('#value').value), 
                 document.querySelector('#details').checked ? 'true' : 'false'
-            )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_0 outline outline-[2px] outline-black/10 cursor-pointer">
+            )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_1 outline outline-[2px] outline-black/10 cursor-pointer hover:bg-neutral_1 hover:text-neutral_5 font-light hover:font-normal">
         </div>
-        <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 drop-shadow-soft-bot-right outline outline-[2px] outline-black/10 p-[16px]">
-            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center text-neutral_9 uppercase font-bold">details</div>
-            <div class="w-full h-[32px] flex items-center justify-evenly text-neutral_9 uppercase"></div>
+        <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 p-[16px]">
+            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center
+             uppercase font-bold">details</div>
+            <div class="w-full h-[32px] flex items-center justify-evenly uppercase"></div>
         </div>
     </div>
 </div>

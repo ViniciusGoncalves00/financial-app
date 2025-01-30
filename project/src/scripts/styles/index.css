@@ -40,7 +40,6 @@ body {
   @apply outline outline-[1px] outline-black/25;
 }
 
-
 .unit {
   @apply base-text-position-center base-border base-outline
 }
@@ -65,8 +64,12 @@ body {
   @apply w-full h-full flex flex-col items-center justify-center;
 }
 
+.table-pattern-1 {
+  @apply text-center align-middle border border-neutral_4 p-[4px]
+}
+
 .main-content {
-  @apply w-full h-full flex gap-[16px] p-[16px]
+  @apply w-full h-full flex gap-[0px] pl-[0px] p-[0px]
 }
 
 input.continuous-number {
