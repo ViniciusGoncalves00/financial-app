@@ -1,13 +1,15 @@
 import { TransactionType } from "../enums/transaction-type";
 import { Entity } from "./entity";
 
+import { Details } from "../models/details";
+
 export class Transaction extends Entity {
     private _type: TransactionType;
     private _agent: string;
     private _transactionDate: number;
     private _referenceDate: number;
     private _value: number;
-    private _details: string | null;
+    private _details: Details | null; // Agora armazena um objeto Details
 
     public constructor(
         name: string, 
@@ -17,7 +19,7 @@ export class Transaction extends Entity {
         transactionDate: number, 
         referenceDate: number, 
         value: number, 
-        details: string | null,
+        details: Details | null,  // Alterado para Details | null
         id?: string, 
         creationDate?: number, 
         lastModified?: number
@@ -40,7 +42,7 @@ export class Transaction extends Entity {
             transactionDate: this._transactionDate,
             referenceDate: this._referenceDate,
             value: this._value,
-            details: this._details,
+            details: this._details ? this._details.getInfo().products : [],
         };
     }
 }

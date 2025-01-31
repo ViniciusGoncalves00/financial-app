@@ -32,7 +32,7 @@
                             <td class="table-cell overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.name"></td>
                             <td class="table-cell overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.agent"></td>
                             <td class="table-cell overflow-x-auto whitespace-nowrap text-ellipsis no-scrollbar" x-text="data.description"></td>
-                            <td class="table-cell" x-text="data.details"></td>
+                            <td class="table-cell" x-text="data.details.getInfo().id"></td>
                             <td class="table-cell text-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -53,20 +53,25 @@
 
         <table class="w-full h-[256px] min-h-[128px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 overflow-auto no-scrollbar">
             <thead class="w-full h-[32px] flex flex-col items-center justify-start">
-                <tr class="w-full bg-neutral_2 h-full flex items-center justify-evenly  text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
-                    <td class="table-header w-1/4 h-full">name</td>
-                    <td class="table-header w-1/4 h-full">unitary value</td>
+                <tr class="w-full bg-neutral_2 h-full flex items-center justify-evenly text-center align-middle lowercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+                    <td class="table-header w-1/4 h-full">product</td>
+                    <td class="table-header w-1/4 h-full">value</td>
                     <td class="table-header w-1/4 h-full">amount</td>
                     <td class="table-header w-1/4 h-full">total value</td>
                 </tr>
             </thead>
-            <tbody x-data="{ transactions : $store.TransactionsManager.GetTransactions() }" class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start">
+            <tbody x-data="{ transactions: $store.TransactionsManager.GetTransactions() }" class="w-full max-h-[calc(100%-32px)] flex flex-col items-center justify-start">
                 <template x-for="(transaction, index) in transactions" :key="index">
-                    <tr x-data="{ data : transaction.getInfo()}" class="w-full h-[32px] flex items-center justify-evenly hover:bg-neutral_0 hover:text-neutral_5" :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'">
-                        <td class="table-cell flex-none w-1/4 h-full" x-text="data.id">id</td>
-                        <td class="table-cell flex-none w-1/4 h-full" x-text="data.type">type</td>
-                        <td class="table-cell flex-none w-1/4 h-full" x-text="$store.Formatter.MilisecondsToDateString(data.transactionDate)">transactionDate</td>
-                        <td class="table-cell flex-none w-1/4 h-full" x-text="$store.Formatter.MilisecondsToDateString(data.referenceDate)">referenceDate</td>
+                    <tr class="w-full flex flex-col">
+                        <template x-for="(product, pIndex) in transaction.details" :key="pIndex">
+                            <tr class="w-full h-[32px] flex items-center justify-evenly hover:bg-neutral_0 hover:text-neutral_5" 
+                                :class="index % 2 == 0 ? 'bg-neutral_2' : 'bg-neutral_1'">
+                                <td class="table-cell flex-none w-1/4 h-full" x-text="product.product">product</td>
+                                <td class="table-cell flex-none w-1/4 h-full" x-text="transaction.value">value</td>
+                                <td class="table-cell flex-none w-1/4 h-full" x-text="product.quantity">amount</td>
+                                <td class="table-cell flex-none w-1/4 h-full" x-text="transaction.value * product.quantity">total value</td>
+                            </tr>
+                        </template>
                     </tr>
                 </template>
             </tbody>
@@ -75,7 +80,7 @@
     <div x-data="" class="w-[320px] h-full flex flex-col items-center justify-start">
         <div class="w-full h-full min-h-[128px] flex flex-col gap-y-[16px] items-center justify-between bg-neutral_2 outline outline-[2px] outline-black/10 p-[32px]  overflow-auto no-scrollbar">
             <div id="transaction-title" class="w-full flex items-center justify-center text-center align-middle uppercase font-bold">register transaction</div>
-            <div class="w-full gap-y-[8px] flex flex-col items-center justify-evenly uppercase">
+            <div x-data="{ details: false}" class="w-full gap-y-[8px] flex flex-col items-center justify-evenly uppercase">
                 <div class="input-field">
                     <label class="field-title">name</label>
                     <input id="name" required type="text" placeholder="name" class="flex-none input-text">
@@ -105,28 +110,39 @@
                 </div>
                 <div class="input-field">
                     <label class="field-title">details</label>
-                    <input id="details" type="checkbox">
+                    <input @click="details = !details" id="details" type="checkbox">
+                </div>
+                
+                <div x-show="details" class="input-field">
+                    <label class="field-title">product</label>
+                    <input id="product_name" type="text" placeholder="name" class="flex-none input-text">
+                </div>
+                
+                <div x-show="details" class="input-field">
+                    <label class="field-title">value</label>
+                    <input id="product_value" type="number" placeholder="R$ 0,00" step="0.01" class="input-number flex-grow">
+                </div>
+                
+                <div x-show="details" class="input-field">
+                    <label class="field-title">amount</label>
+                    <input id="product_amount" type="number" placeholder="0" step="1" class="input-number flex-grow">
                 </div>
             </div>
-            <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 p-[16px]">
-                <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center
-                 uppercase font-bold">details</div>
-                <div class="w-full h-[32px] flex items-center justify-evenly uppercase"></div>
-            </div>
-            <input @click="$store.TransactionsManager.Create(
+            <input @click="
+            const product = document.querySelector('#product_name').value;
+            const value = parseFloat(document.querySelector('#product_value').value);
+            const amount = parseInt(document.querySelector('#product_amount').value);
+            
+            $store.TransactionsManager.Create(
                 document.querySelector('#name').value, 
                 document.querySelector('#type').value, 
                 document.querySelector('#agent').value, 
                 document.querySelector('#date').value, 
                 document.querySelector('#referenceDate').value, 
                 parseFloat(document.querySelector('#value').value), 
-                document.querySelector('#details').checked ? 'true' : 'false'
-            )"  id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_1 outline outline-[2px] outline-black/10">
+                document.querySelector('#details').checked ? { product, value, amount } : null
+            )
+        " id="transaction-create" type="submit" value="Create" class="button-submit flex-none w-full h-[32px] rounded-full justify-center bg-neutral_2 hover:bg-neutral_1 outline outline-[2px] outline-black/10">        
         </div>
-        <!-- <div class="w-full h-[256px] flex flex-col items-center justify-start bg-neutral_2 outline outline-[2px] outline-black/10 p-[16px]">
-            <div id="transaction-title" class="w-full h-[32px] flex items-center justify-center
-             uppercase font-bold">details</div>
-            <div class="w-full h-[32px] flex items-center justify-evenly uppercase"></div>
-        </div> -->
     </div>
 </div>
